@@ -13,6 +13,10 @@ namespace DataAccessLayer.Entities
         [Required, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int WaterPointId { get; set; }
 
+        [Required, DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int UserId { get; set; }
+
+
         [Required, Range(0, 5)]
         public int Rating { get; set; }
 
@@ -20,5 +24,6 @@ namespace DataAccessLayer.Entities
         public string ReviewText { get; set; }
 
         public WaterPoint WaterPoint { get; set; }
+        public RegisteredUser User { get; set; }
     }
 }

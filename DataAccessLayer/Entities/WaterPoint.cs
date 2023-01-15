@@ -16,6 +16,9 @@ namespace DataAccessLayer.Entities
         [Required, StringLength(150)]
         public string Description { get; set; }
 
+        [Required]
+        public WaterPointType WaterPointType { get; set; }
+
         [Required, StringLength(20)]
         public string PhoneNumber { get; set; }
 
@@ -48,5 +51,14 @@ namespace DataAccessLayer.Entities
         public List<Product> Products { get; set; }
 
 
+    }
+
+    public enum WaterPointType
+    {
+        PumpStation,
+        WaterDelivery,
+        Shop,
+        EmergencyWaterTransportation,
+        Other
     }
 }

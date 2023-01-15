@@ -60,6 +60,8 @@ namespace DataAccessLayer.Repositories
                     .ThenInclude(x => x.WaterPointRepresentative)
                  .Include(x => x.WaterPoint)
                     .ThenInclude(x => x.WaterPointRepresentative)
+                 .Include(x => x.User)
+                    .ThenInclude(x => x.Orders)
                  .FirstOrDefaultAsync(x => x.Id == id);
 
 
@@ -72,6 +74,8 @@ namespace DataAccessLayer.Repositories
                     .ThenInclude(x => x.WaterPointRepresentative)
                  .Include(x => x.WaterPoint)
                     .ThenInclude(x => x.WaterPointRepresentative)
+                .Include(x => x.User)
+                    .ThenInclude(x => x.Orders)
                 .ToListAsync();
         }
 
