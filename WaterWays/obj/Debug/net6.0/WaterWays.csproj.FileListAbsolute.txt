@@ -271,3 +271,8 @@ C:\Users\Denis\Desktop\Моделювання систем\Prototype_project\Wat
 C:\Users\Denis\Desktop\Моделювання систем\Prototype_project\WaterWays\WaterWays\obj\Debug\net6.0\WaterWays.pdb
 C:\Users\Denis\Desktop\Моделювання систем\Prototype_project\WaterWays\WaterWays\obj\Debug\net6.0\WaterWays.genruntimeconfig.cache
 C:\Users\Denis\Desktop\Моделювання систем\Prototype_project\WaterWays\WaterWays\obj\Debug\net6.0\ref\WaterWays.dll
+C:\Users\Denis\Desktop\Моделювання систем\Prototype_project\WaterWays\WaterWays\bin\Debug\net6.0\CoverletSourceRootsMapping
+C:\Users\Denis\Desktop\Моделювання систем\Prototype_project\WaterWays\WaterWays\bin\Debug\net6.0\BusinessLogicLayer.dll
+C:\Users\Denis\Desktop\Моделювання систем\Prototype_project\WaterWays\WaterWays\bin\Debug\net6.0\DataAccessLayer.dll
+C:\Users\Denis\Desktop\Моделювання систем\Prototype_project\WaterWays\WaterWays\bin\Debug\net6.0\BusinessLogicLayer.pdb
+C:\Users\Denis\Desktop\Моделювання систем\Prototype_project\WaterWays\WaterWays\bin\Debug\net6.0\DataAccessLayer.pdb

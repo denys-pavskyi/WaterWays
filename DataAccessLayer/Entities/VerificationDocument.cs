@@ -17,6 +17,9 @@ namespace DataAccessLayer.Entities
         public int UploadedByUserId { get; set; }
 
         [Required]
+        public string DocumentLink { get; set; }
+
+        [Required]
         public DateTime UploadDate { get; set; }
 
         [Required]

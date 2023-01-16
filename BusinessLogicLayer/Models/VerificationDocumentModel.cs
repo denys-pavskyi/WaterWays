@@ -13,6 +13,8 @@ namespace BusinessLogicLayer.Models
 
         public int UploadedByUser { get; set; }
 
+        public string DocumentLink { get; set; }
+
         public DateTime UploadDate { get; set; }
 
         public VerificationStatus VerificationStatus { get; set; }

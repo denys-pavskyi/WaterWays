@@ -9,9 +9,8 @@ namespace BusinessLogicLayer.Interfaces
 {
     public interface ILoginService
     {
-        public interface ILoginService
-        {
-            Task<LoginResponse> LoginAsync(LoginRequest loginRequest);
-        }
+      
+        Task<LoginResponse> LoginAsync(LoginRequest loginRequest);
+        
     }
 }
