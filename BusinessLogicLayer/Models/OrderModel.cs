@@ -17,6 +17,8 @@ namespace BusinessLogicLayer.Models
 
         public int UserId { get; set; }
 
+        public DateTime OrderDate { get; set; }
+
         public string ContactPhone { get; set; }
 
         public string Address { get; set; }

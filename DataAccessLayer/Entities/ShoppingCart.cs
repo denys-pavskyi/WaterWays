@@ -12,7 +12,10 @@ namespace DataAccessLayer.Entities
     {
         [Required, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ProductId { get; set; }
-
+		
+		[Required, DatabaseGenerated(DatabaseGeneratedOption.None)]
+		public int UserId { get; set; }
+		
         [Required]
         public decimal Quantity { get; set; }
 
@@ -23,5 +26,6 @@ namespace DataAccessLayer.Entities
         public decimal TotalPrice { get; set; }
 
         public Product Product { get; set; }
+		public RegisteredUser User { get; set; }
     }
 }

@@ -34,6 +34,7 @@ namespace BusinessLogicLayer
             CreateMap<RegisteredUser, RegisteredUserModel>()
                 .ForMember(rum => rum.OrderIds, ruser => ruser.MapFrom(x => x.Orders.Select(x => x.Id)))
                 .ForMember(rum => rum.ShoppingCartItemIds, ruser => ruser.MapFrom(x => x.ShoppingCartItems.Select(x=>x.Id)))
+                .ForMember(rum => rum.ReviewIds, ruser => ruser.MapFrom(x => x.Reviews.Select(x => x.Id)))
                 .ReverseMap();
 
             CreateMap<Review, ReviewModel>();
@@ -45,15 +46,23 @@ namespace BusinessLogicLayer
             CreateMap<ShoppingCart, ShoppingCartModel>();
 
             CreateMap<ShoppingCartModel, ShoppingCart>()
-                .ForMember(sc => sc.Product, scm => scm.UseDestinationValue());
-                
+                .ForMember(sc => sc.Product, scm => scm.UseDestinationValue())
+                .ForMember(sc => sc.User, scm => scm.UseDestinationValue());
+
+
 
             CreateMap<WaterPoint, WaterPointModel>()
                 .ForMember(wpm => wpm.ProductIds, wp => wp.MapFrom(x => x.Products.Select(x => x.Id)))
                 .ForMember(wpm => wpm.ReviewIds, wp => wp.MapFrom(x => x.Reviews.Select(x => x.Id)));
 
             CreateMap<WaterPointModel, WaterPoint>()
-                .ForMember(wp => wp.WaterPointRepresentative, wpm => wpm.UseDestinationValue());
+                .ForMember(wp => wp.User, wpm => wpm.UseDestinationValue());
+
+            CreateMap<VerificationDocument, VerificationDocumentModel>();
+
+            CreateMap<VerificationDocumentModel, VerificationDocument>()
+                .ForMember(vd => vd.User, vdm => vdm.UseDestinationValue())
+                .ForMember(vd => vd.WaterPoint, vdm => vdm.UseDestinationValue());
         }
     }
 }

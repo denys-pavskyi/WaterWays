@@ -19,6 +19,10 @@ namespace DataAccessLayer.Entities
         [Required, StringLength(15)]
         public string ContactPhone { get; set; }
 
+        [Required]
+        public DateTime OrderDate { get; set; }
+
+
         [StringLength(100)]
         public string Address { get; set; }
 
@@ -33,6 +37,7 @@ namespace DataAccessLayer.Entities
 
         public RegisteredUser User { get; set; }
         public List<OrderDetail> OrderDetails { get; set; }
+        
     }
 
     public enum OrderStatus

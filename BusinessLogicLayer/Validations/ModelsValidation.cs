@@ -1,4 +1,5 @@
 ﻿using BusinessLogicLayer.Models;
+using DataAccessLayer.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -214,6 +215,11 @@ namespace BusinessLogicLayer.Validations
             }
         }
 
-       
+        public static void VerificationDocumentModelValidation(VerificationDocumentModel model)
+        {
+
+        }
+
+
     }
 }

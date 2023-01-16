@@ -1,0 +1,2 @@
+C:\Users\Denis\Desktop\Моделювання систем\Prototype_project\WaterWays\UI-Angular\obj\Debug\UI-Angular.esproj.SuggestedBindingRedirects.cache
+C:\Users\Denis\Desktop\Моделювання систем\Prototype_project\WaterWays\UI-Angular\obj\Debug\UI-Angular.esproj.CoreCompileInputs.cache

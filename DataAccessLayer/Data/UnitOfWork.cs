@@ -16,7 +16,9 @@ namespace DataAccessLayer.Data
         private ProductRepository productRepository;
         private ReviewRepository reviewRepository;
         private ShoppingCartRepository shoppingCartRepository;
+        private RegisteredUserRepository registeredUserRepository;
         private WaterPointRepository waterPointRepository;
+        private VerificationDocumentRepository verificationDocumentRepository;
 
         public UnitOfWork(WaterWaysDbContext context)
         {
@@ -96,5 +98,34 @@ namespace DataAccessLayer.Data
             }
         }
 
+        public IVerificationDocumentRepository VerificationDocumentRepository
+        {
+            get
+            {
+                if (verificationDocumentRepository == null)
+                {
+                   verificationDocumentRepository = new VerificationDocumentRepository(dbContext);
+                }
+                return verificationDocumentRepository;
+            }
+        }
+
+        public IRegisteredUserRepository RegisteredUserRepository
+        {
+            get
+            {
+                if (registeredUserRepository == null)
+                {
+                    registeredUserRepository = new RegisteredUserRepository(dbContext);
+                }
+                return registeredUserRepository;
+            }
+        }
+
+
+        public async Task SaveAsync()
+        {
+            await dbContext.SaveChangesAsync();
+        }
     }
 }

@@ -21,6 +21,9 @@ namespace DataAccessLayer.Entities
         [Required, StringLength(20)]
         public string Password { get; set; }
 
+        [Required]
+        public RegisteredUserRole Role { get; set; }
+
         [Required, EmailAddress]
         public string Email { get; set; }
 
@@ -32,5 +35,13 @@ namespace DataAccessLayer.Entities
 
         public List<Order> Orders { get; set; }
         public List<ShoppingCart> ShoppingCartItems { get; set;}
+        public List<Review> Reviews { get; set; }
+    }
+
+    public enum RegisteredUserRole
+    {
+        RegisteredUser,
+        WaterPointRepresentative,
+        Admin
     }
 }

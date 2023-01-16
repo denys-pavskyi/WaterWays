@@ -28,6 +28,8 @@ namespace DataAccessLayer.Entities
         public decimal QuantityAvailable { get; set; }
 
         public WaterPoint WaterPoint { get; set; }  
+
+        public List<OrderDetail> OrderDetails { get; set; }
     }
 
 

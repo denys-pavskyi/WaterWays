@@ -15,6 +15,7 @@ namespace DataAccessLayer.Interfaces
         IReviewRepository ReviewRepository { get; }
         IShoppingCartRepository ShoppingCartRepository { get; }
         IWaterPointRepository WaterPointRepository { get; }
+        IVerificationDocumentRepository VerificationDocumentRepository { get; }
         Task SaveAsync();
     }
 }

@@ -58,7 +58,7 @@ namespace DataAccessLayer.Repositories
         {
             return await _context.Products
                 .Include(x => x.WaterPoint)
-                    .ThenInclude(x => x.WaterPointRepresentative)
+                    .ThenInclude(x => x.User)
                  .Include(x => x.WaterPoint)
                     .ThenInclude(x => x.Reviews)
                  .FirstOrDefaultAsync(x => x.Id == id);
@@ -70,7 +70,7 @@ namespace DataAccessLayer.Repositories
         {
             return await _context.Products
                 .Include(x => x.WaterPoint)
-                    .ThenInclude(x => x.WaterPointRepresentative)
+                    .ThenInclude(x => x.User)
                  .Include(x => x.WaterPoint)
                     .ThenInclude(x => x.Reviews)
                 .ToListAsync();

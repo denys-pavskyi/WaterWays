@@ -56,9 +56,9 @@ namespace DataAccessLayer.Repositories
         public async Task<WaterPoint> GetByIdWithDetailsAsync(int id)
         {
             return await _context.WaterPoints
-                .Include(x => x.WaterPointRepresentative)
+                .Include(x => x.User)
                     .ThenInclude(x => x.Orders)
-                 .Include(x => x.WaterPointRepresentative)
+                 .Include(x => x.User)
                     .ThenInclude(x => x.ShoppingCartItems)
                 .Include(x => x.Reviews)
                 .Include(x => x.Products)
@@ -70,9 +70,9 @@ namespace DataAccessLayer.Repositories
         public async Task<IEnumerable<WaterPoint>> GetAllWithDetailsAsync()
         {
             return await _context.WaterPoints
-                .Include(x => x.WaterPointRepresentative)
+                .Include(x => x.User)
                     .ThenInclude(x => x.Orders)
-                 .Include(x => x.WaterPointRepresentative)
+                 .Include(x => x.User)
                     .ThenInclude(x => x.ShoppingCartItems)
                 .Include(x => x.Reviews)
                 .Include(x => x.Products)

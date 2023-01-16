@@ -35,6 +35,7 @@ namespace BusinessLogicLayer.Models
 
         public int RepresentativeId { get; set; }
 
+        public int VerificationDocumentId { get; set; }
 
 
         public List<int> ReviewIds { get; set; }

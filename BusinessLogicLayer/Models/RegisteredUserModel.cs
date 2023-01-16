@@ -22,11 +22,14 @@ namespace BusinessLogicLayer.Models
 
         public string Email { get; set; }
 
+        public RegisteredUserRole Role { get; set; }
+
         public string Phone { get; set; }
 
         public string Address { get; set; }
 
         public List<int> OrderIds { get; set; }
         public List<int> ShoppingCartItemIds { get; set; }
+        public List<int> ReviewIds { get; set; }
     }
 }

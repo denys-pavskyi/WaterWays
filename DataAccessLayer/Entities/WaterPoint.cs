@@ -41,10 +41,14 @@ namespace DataAccessLayer.Entities
         public bool HasSearchPriority { get; set; }
 
         [Required, DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int RepresentativeId { get; set; }
+        public int UserId { get; set; }
 
+        [Required, DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int VerificationDocumentId { get; set; }
 
-        public RegisteredUser WaterPointRepresentative { get; set; }
+        public VerificationDocument VerificationDocument { get; set; }
+
+        public RegisteredUser User { get; set; }
 
         public List<Review> Reviews { get; set; }
 
