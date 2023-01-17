@@ -11,7 +11,7 @@ namespace BusinessLogicLayer.Models
     {
         public int WaterPointId { get; set; }
 
-        public int UploadedByUser { get; set; }
+        public int UserId { get; set; }
 
         public string DocumentLink { get; set; }
 

@@ -14,7 +14,7 @@ namespace DataAccessLayer.Entities
         public int WaterPointId { get; set; }
 
         [Required, DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int UploadedByUserId { get; set; }
+        public int UserId { get; set; }
 
         [Required]
         public string DocumentLink { get; set; }

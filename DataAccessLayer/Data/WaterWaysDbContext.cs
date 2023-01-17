@@ -64,11 +64,18 @@ namespace DataAccessLayer.Data
                 .HasOne(x => x.User).WithMany(x => x.ShoppingCartItems).HasForeignKey(x => x.UserId).OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<VerificationDocument>()
-                .HasOne(x => x.WaterPoint).WithOne(x => x.VerificationDocument).OnDelete(DeleteBehavior.NoAction);
+                .HasOne(x => x.WaterPoint).WithOne(x => x.VerificationDocument).HasForeignKey<VerificationDocument>(x => x.WaterPointId).OnDelete(DeleteBehavior.NoAction);
            
 
             modelBuilder.Entity<WaterPoint>()
-                .HasOne(x => x.VerificationDocument).WithOne(x => x.WaterPoint).OnDelete(DeleteBehavior.Cascade);
+                .HasOne(x => x.VerificationDocument).WithOne(x => x.WaterPoint).HasForeignKey<WaterPoint>(x => x.VerificationDocumentId).OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<WaterPoint>()
+                .HasMany(x => x.Reviews).WithOne(x => x.WaterPoint).HasForeignKey(x => x.WaterPointId).OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<WaterPoint>()
+                .HasMany(x => x.Products).WithOne(x => x.WaterPoint).HasForeignKey(x => x.WaterPointId).OnDelete(DeleteBehavior.Cascade);
+
+
+
 
             SeedData(modelBuilder);
         }
@@ -156,7 +163,7 @@ namespace DataAccessLayer.Data
                         Rating = 3d,
                         IsVerified = true,
                         HasOrdering = true,
-                        HasDelivery = true,
+                        HasOwnDelivery = true,
                         HasSearchPriority = false,
                         UserId = 2,
                         VerificationDocumentId = 1,
@@ -172,7 +179,7 @@ namespace DataAccessLayer.Data
                         Rating = 4d,
                         IsVerified = true,
                         HasOrdering = false,
-                        HasDelivery = false,
+                        HasOwnDelivery = false,
                         HasSearchPriority = false,
                         UserId = 2,
                         VerificationDocumentId = 2,
@@ -188,10 +195,10 @@ namespace DataAccessLayer.Data
                         Rating = 3.5d,
                         IsVerified = true,
                         HasOrdering = true,
-                        HasDelivery = true,
+                        HasOwnDelivery = true,
                         HasSearchPriority = false,
                         UserId = 2,
-                        VerificationDocumentId = 1,
+                        VerificationDocumentId = 3,
                     }
                 );
 
@@ -238,6 +245,159 @@ namespace DataAccessLayer.Data
                     }
                 );
 
+            modelBuilder.Entity<VerificationDocument>().HasData(
+                    new VerificationDocument
+                    {
+                        Id = 1,
+                        WaterPointId = 1,
+                        UserId = 2,
+                        DocumentLink = "doc_link1",
+                        UploadDate = new DateTime(2020, 6, 16),
+                        VerificationStatus = VerificationStatus.Approved
+                    },
+                    new VerificationDocument
+                    {
+                        Id = 2,
+                        WaterPointId = 2,
+                        UserId = 2,
+                        DocumentLink = "doc_link2",
+                        UploadDate = new DateTime(2018,2,3),
+                        VerificationStatus = VerificationStatus.Approved
+                    },
+                    new VerificationDocument
+                    {
+                        Id = 3,
+                        WaterPointId = 3,
+                        UserId = 3,
+                        DocumentLink = "doc_link3",
+                        UploadDate = new DateTime(2019, 10, 23),
+                        VerificationStatus = VerificationStatus.Approved
+                    }
+
+                );
+
+
+            modelBuilder.Entity<Product>().HasData(
+                    new Product
+                    {
+                        Id = 1,
+                        Title = "Bottled water",
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temDuisfugiat nulla pariaecat cupidata deserunt mollit anim id est laborum",
+                        Type = ProductType.StillWater,
+                        Price = 5.5m,
+                        QuantityAvailable = 100,
+                        WaterPointId = 1
+                    },
+                    new Product
+                    {
+                        Id = 2,
+                        Title = "Bottled sparkling water",
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temDuisfugiat nulla pariaecat cupidata deserunt mollit anim id est laborum",
+                        Type = ProductType.SparklingWater,
+                        Price = 6.5m,
+                        QuantityAvailable = 150,
+                        WaterPointId = 1
+                    },
+                    new Product
+                    {
+                        Id = 3,
+                        Title = "Water filters",
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temDuisfugiat nulla pariaecat cupidata deserunt mollit anim id est laborum",
+                        Type = ProductType.Other,
+                        Price = 15m,
+                        QuantityAvailable = 100,
+                        WaterPointId = 1
+                    },
+                    new Product
+                    {
+                        Id = 4,
+                        Title = "Still drinkable water",
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temDuisfugiat nulla pariaecat cupidata deserunt mollit anim id est laborum",
+                        Type = ProductType.StillWater,
+                        Price = 5m,
+                        QuantityAvailable = 200,
+                        WaterPointId = 3
+                    },
+                    new Product
+                    {
+                        Id = 5,
+                        Title = "Industrial water water",
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temDuisfugiat nulla pariaecat cupidata deserunt mollit anim id est laborum",
+                        Type = ProductType.IndustrialWater,
+                        Price = 2m,
+                        QuantityAvailable = 200,
+                        WaterPointId = 3
+                    },
+                    new Product
+                    {
+                        Id = 6,
+                        Title = "Plastic bottle 5 liter",
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temDuisfugiat nulla pariaecat cupidata deserunt mollit anim id est laborum",
+                        Type = ProductType.Other,
+                        Price = 10m,
+                        QuantityAvailable = 100,
+                        WaterPointId = 1
+                    }
+
+                );
+
+            modelBuilder.Entity<Order>().HasData(
+                    new Order
+                    {
+                        Id = 1,
+                        OrderText = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temDuisfugiat",
+                        UserId = 1,
+                        ContactPhone = "(068)-111-11-11",
+                        OrderDate = new DateTime(2022, 01, 12),
+                        Address = "address1",
+                        TotalPrice = 70m,
+                        IsToBeDelivered = true,
+                        OrderStatus = OrderStatus.Done
+                    },
+                    new Order
+                    {
+                        Id = 2,
+                        OrderText = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temDuisfugiat",
+                        UserId = 1,
+                        ContactPhone = "(068)-111-11-11",
+                        OrderDate = new DateTime(2022, 01, 13),
+                        Address = "address1",
+                        TotalPrice = 50m,
+                        OrderStatus = OrderStatus.OnDelivery
+                    }
+
+                );
+
+            modelBuilder.Entity<OrderDetail>().HasData(
+                    new OrderDetail
+                    {
+                        Id = 1,
+                        OrderId = 1,
+                        ProductId = 5,
+                        Quantity = 20,
+                        UnitPrice = 2m,
+                        TotalPrice = 40m
+                    },
+                    new OrderDetail
+                    {
+                        Id = 2,
+                        OrderId = 1,
+                        ProductId = 6,
+                        Quantity = 3,
+                        UnitPrice = 10m,
+                        TotalPrice = 30m
+                    },
+                    new OrderDetail
+                    {
+                        Id = 3,
+                        OrderId = 2,
+                        ProductId = 4,
+                        Quantity = 10,
+                        UnitPrice = 5m,
+                        TotalPrice = 50m
+                    }
+
+                );
 
         }
     }

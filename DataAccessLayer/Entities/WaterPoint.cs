@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,7 +36,7 @@ namespace DataAccessLayer.Entities
         public bool HasOrdering { get; set; }
 
         [Required]
-        public bool HasDelivery { get; set; }
+        public bool HasOwnDelivery { get; set; }
 
         [Required]
         public bool HasSearchPriority { get; set; }
@@ -43,8 +44,8 @@ namespace DataAccessLayer.Entities
         [Required, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int UserId { get; set; }
 
-        [Required, DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int VerificationDocumentId { get; set; }
+        [Required, DatabaseGenerated(DatabaseGeneratedOption.None), AllowNull]
+        public int? VerificationDocumentId { get; set; }
 
         public VerificationDocument VerificationDocument { get; set; }
 

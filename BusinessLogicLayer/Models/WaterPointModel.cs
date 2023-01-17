@@ -29,13 +29,13 @@ namespace BusinessLogicLayer.Models
 
         public bool HasOrdering { get; set; }
 
-        public bool HasDelivery { get; set; }
+        public bool HasOwnDelivery { get; set; }
 
         public bool HasSearchPriority { get; set; }
 
-        public int RepresentativeId { get; set; }
+        public int UserId { get; set; }
 
-        public int VerificationDocumentId { get; set; }
+        public int? VerificationDocumentId { get; set; }
 
 
         public List<int> ReviewIds { get; set; }
