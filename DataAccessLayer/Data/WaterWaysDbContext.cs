@@ -363,6 +363,7 @@ namespace DataAccessLayer.Data
                         OrderDate = new DateTime(2022, 01, 13),
                         Address = "address1",
                         TotalPrice = 50m,
+                        IsToBeDelivered = true,
                         OrderStatus = OrderStatus.OnDelivery
                     }
 

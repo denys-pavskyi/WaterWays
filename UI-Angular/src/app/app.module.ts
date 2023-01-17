@@ -12,6 +12,10 @@ import { ShoppingCartModalComponent } from './components/shopping-cart-modal/sho
 import { ShoppingCartInfoComponent } from './components/shopping-cart-info/shopping-cart-info.component';
 import { OrderConfirmingComponent } from './components/order-confirming/order-confirming.component';
 import { WaterPointListComponent } from './components/water-point-list/water-point-list.component';
+import { OrderListComponent } from './components/order-list/order-list.component';
+import { RegistrationComponent } from './components/registration/registration.component';
+import { RouterModule } from '@angular/router';
+import { GlobalErrorComponent } from './components/global-error/global-error.component';
 
 @NgModule({
   declarations: [
@@ -24,10 +28,23 @@ import { WaterPointListComponent } from './components/water-point-list/water-poi
     ShoppingCartModalComponent,
     ShoppingCartInfoComponent,
     OrderConfirmingComponent,
-    WaterPointListComponent
+    WaterPointListComponent,
+    OrderListComponent,
+    RegistrationComponent,
+    GlobalErrorComponent
   ],
   imports: [
-    BrowserModule, HttpClientModule
+    BrowserModule, HttpClientModule,
+
+    RouterModule.forRoot([
+      {path: '', redirectTo: '/home', pathMatch: 'full'},
+      {path: 'home', component: HomeComponent},
+      {path: 'login', component: LoginComponent},
+      {path: 'registration', component: RegistrationComponent},
+      {path: 'order-confirming/:id', component: OrderConfirmingComponent},
+      
+
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]
