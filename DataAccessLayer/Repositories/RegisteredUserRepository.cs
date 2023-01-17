@@ -58,8 +58,6 @@ namespace DataAccessLayer.Repositories
         {
             return await _context.RegisteredUsers
                 .Include(x => x.Orders)
-                    .ThenInclude(x => x.User)
-                .Include(x => x.Orders)
                     .ThenInclude(x => x.OrderDetails)
                 .Include(x => x.ShoppingCartItems)
                     .ThenInclude(x => x.Product)
@@ -71,8 +69,6 @@ namespace DataAccessLayer.Repositories
         public async Task<IEnumerable<RegisteredUser>> GetAllWithDetailsAsync()
         {
             return await _context.RegisteredUsers
-                .Include(x => x.Orders)
-                    .ThenInclude(x => x.User)
                 .Include(x => x.Orders)
                     .ThenInclude(x => x.OrderDetails)
                 .Include(x => x.ShoppingCartItems)

@@ -181,7 +181,7 @@ namespace DataAccessLayer.Data
                         HasOrdering = false,
                         HasOwnDelivery = false,
                         HasSearchPriority = false,
-                        UserId = 2,
+                        UserId = 3,
                         VerificationDocumentId = 2,
                     },
                     new WaterPoint
@@ -197,8 +197,40 @@ namespace DataAccessLayer.Data
                         HasOrdering = true,
                         HasOwnDelivery = true,
                         HasSearchPriority = false,
-                        UserId = 2,
+                        UserId = 3,
                         VerificationDocumentId = 3,
+                    },
+                    new WaterPoint
+                    {
+                        Id = 4,
+                        Title = "WaterPoint4",
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temDuisfugiat nulla pariaecat cupidata deserunt mollit anim id est laborum",
+                        WaterPointType = WaterPointType.PumpStation,
+                        PhoneNumber = "(068)-123-58-77",
+                        Address = "WaterPoint_address4",
+                        Rating = 4d,
+                        IsVerified = true,
+                        HasOrdering = true,
+                        HasOwnDelivery = true,
+                        HasSearchPriority = false,
+                        UserId = 2,
+                        VerificationDocumentId = 4,
+                    },
+                    new WaterPoint
+                    {
+                        Id = 5,
+                        Title = "WaterPoint5",
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temDuisfugiat nulla pariaecat cupidata deserunt mollit anim id est laborum",
+                        WaterPointType = WaterPointType.Shop,
+                        PhoneNumber = "(068)-776-58-77",
+                        Address = "WaterPoint_address5",
+                        Rating = 5d,
+                        IsVerified = true,
+                        HasOrdering = true,
+                        HasOwnDelivery = true,
+                        HasSearchPriority = false,
+                        UserId = 2,
+                        VerificationDocumentId = 5,
                     }
                 );
 
@@ -209,6 +241,7 @@ namespace DataAccessLayer.Data
                         WaterPointId = 1,
                         UserId = 1,
                         Rating = 3,
+                        UploadedOn = new DateTime(2023,1,10),
                         ReviewText = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temDuisfugiat nulla pariaecat cupidata deserunt mollit anim id est laborum"
                     },
                     new Review
@@ -217,6 +250,7 @@ namespace DataAccessLayer.Data
                         WaterPointId = 2,
                         UserId = 1,
                         Rating = 5,
+                        UploadedOn = new DateTime(2023, 1, 11),
                         ReviewText = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temDuisfugiat nulla pariaecat cupidata deserunt mollit anim id est laborum"
                     },
                     new Review
@@ -225,6 +259,7 @@ namespace DataAccessLayer.Data
                         WaterPointId = 2,
                         UserId = 2,
                         Rating = 3,
+                        UploadedOn = new DateTime(2023, 1, 12),
                         ReviewText = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temDuisfugiat nulla pariaecat cupidata deserunt mollit anim id est laborum"
                     },
                     new Review
@@ -233,6 +268,7 @@ namespace DataAccessLayer.Data
                         WaterPointId = 3,
                         UserId = 1,
                         Rating = 4,
+                        UploadedOn = new DateTime(2023, 1, 13),
                         ReviewText = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temDuisfugiat nulla pariaecat cupidata deserunt mollit anim id est laborum"
                     },
                     new Review
@@ -241,6 +277,7 @@ namespace DataAccessLayer.Data
                         WaterPointId = 3,
                         UserId = 2,
                         Rating = 3,
+                        UploadedOn = new DateTime(2023, 1, 14),
                         ReviewText = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temDuisfugiat nulla pariaecat cupidata deserunt mollit anim id est laborum"
                     }
                 );
@@ -259,7 +296,7 @@ namespace DataAccessLayer.Data
                     {
                         Id = 2,
                         WaterPointId = 2,
-                        UserId = 2,
+                        UserId = 3,
                         DocumentLink = "doc_link2",
                         UploadDate = new DateTime(2018,2,3),
                         VerificationStatus = VerificationStatus.Approved
@@ -271,6 +308,24 @@ namespace DataAccessLayer.Data
                         UserId = 3,
                         DocumentLink = "doc_link3",
                         UploadDate = new DateTime(2019, 10, 23),
+                        VerificationStatus = VerificationStatus.Approved
+                    },
+                    new VerificationDocument
+                    {
+                        Id = 4,
+                        WaterPointId = 4,
+                        UserId = 2,
+                        DocumentLink = "doc_link4",
+                        UploadDate = new DateTime(2023, 1, 2),
+                        VerificationStatus = VerificationStatus.Approved
+                    },
+                    new VerificationDocument
+                    {
+                        Id = 5,
+                        WaterPointId = 5,
+                        UserId = 2,
+                        DocumentLink = "doc_link5",
+                        UploadDate = new DateTime(2023, 1, 1),
                         VerificationStatus = VerificationStatus.Approved
                     }
 

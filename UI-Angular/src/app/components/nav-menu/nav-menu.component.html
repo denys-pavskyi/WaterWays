@@ -1,1 +1,86 @@
-<p>nav-menu works!</p>
+<header>
+    <nav
+      class="navbar navbar-expand-sm navbar-toggleable-sm   border-bottom box-shadow mb-3 pl-3"
+    >
+    <a class="nav-link text-dark" [routerLink]="['/']">
+        <div class="container">
+            <div class="row">
+                <div class="col-3"><img src="/assets/icons/homepage-icon.png" width="20px"></div>
+                <div class="col-8 homeDiv">Home</div>
+            </div>
+        </div>
+        
+    </a>
+      <div class="container">
+        <a class="navbar-brand" [routerLink]="['/']"><u>WaterWays</u></a>
+        <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target=".navbar-collapse"
+        aria-label="Toggle navigation"
+        [attr.aria-expanded]="isExpanded"
+        (click)="toggle()"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+        <div
+          class="navbar-collapse collapse d-sm-inline-flex justify-content-end"
+          [ngClass]="{ show: isExpanded }"
+        >
+          <ul class="navbar-nav flex-grow links">
+            <li
+              class="nav-item"
+              [routerLinkActive]="['link-active']"
+              [routerLinkActiveOptions]="{ exact: true }"
+            >
+            </li>
+
+
+            <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="accountService.isRepresentative">
+            <li class="nav-item" [routerLinkActive]="['link-active']">
+                <a class="nav-link text-dark" [routerLink]="['/manage-water-points']"
+                    >Water points</a
+                >
+            </li>
+
+            <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="accountService.isAdmin">
+                <a class="nav-link text-dark" [routerLink]="['/verification-documents']"
+                    >Manage verifications</a
+                >
+            </li>
+         
+            <li class="nav-item" [routerLinkActive]="['link-active']">
+                <a class="nav-link text-dark" [routerLink]="['/order-confirming']"
+                  ><img src="/assets/icons/shopping-cart.png" width="20px"></a
+                >
+            </li>
+           
+            <li class="nav-item" [routerLinkActive]="['link-active']">
+                <a class="nav-link text-dark" [routerLink]="['/my-orders']"
+                    >My Orders</a
+                >
+            </li>
+
+            <li class="nav-item" [routerLinkActive]="['link-active']">
+                <a class="nav-link text-dark" [routerLink]="['/profile']"
+                    >Profile</a
+                >
+            </li>
+
+            <li *ngIf="!accountService.isLogged" class="nav-item" [routerLinkActive]="['link-active']">
+                <a class="nav-link text-dark" [routerLink]="['/login']"
+                  >Sign In</a
+                >
+            </li>
+            <li *ngIf="accountService.isLogged" class="nav-item logOut" >
+              <a class="nav-link text-dark" (click)="accountService.logout()"
+                >Logout</a
+              >
+          </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  

@@ -59,5 +59,11 @@ namespace BusinessLogicLayer.Services
             _unitOfWork.ShoppingCartRepository.Update(mapped);
             await _unitOfWork.SaveAsync();
         }
+
+        public async Task<IEnumerable<ShoppingCartModel>> GetAllByUserId(int userId)
+        {
+            IEnumerable<ShoppingCart> unmappedShoppingCarts = await _unitOfWork.ShoppingCartRepository.GetAllWithDetailsAsync();
+            return _mapper.Map<IEnumerable<ShoppingCartModel>>(unmappedShoppingCarts.Where(x => x.UserId == userId));
+        }
     }
 }

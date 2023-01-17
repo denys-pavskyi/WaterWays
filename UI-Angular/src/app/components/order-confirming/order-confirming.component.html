@@ -1,1 +1,7 @@
-<p>order-confirming works!</p>
+<div class="container-fluid customConfirmationDiv">
+    <div class="d-flex ordersContainer w-95" *ngIf="items$ | async as items">
+        <div *ngFor="let item of items">
+            <app-order-confirming-item [item]="item"></app-order-confirming-item>
+        </div>
+    </div>
+</div>

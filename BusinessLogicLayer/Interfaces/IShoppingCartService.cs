@@ -9,5 +9,6 @@ namespace BusinessLogicLayer.Interfaces
 {
     public interface IShoppingCartService: ICrud<ShoppingCartModel>
     {
+        Task<IEnumerable<ShoppingCartModel>> GetAllByUserId(int userId);
     }
 }

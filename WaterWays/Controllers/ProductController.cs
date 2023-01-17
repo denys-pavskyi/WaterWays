@@ -73,6 +73,25 @@ namespace WaterWays.Controllers
 
         }
 
+        // GET: api/<ProductController>/waterPoint/{id}
+        [HttpGet]
+        [Route("products/waterPoint/{waterPointId}")]
+        public async Task<ActionResult<IEnumerable<ProductModel>>> Get(int waterPointId)
+        {
+            var Product = await _service.GetAllByWaterPointId(waterPointId);
+
+            if (Product == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+
+                return new ObjectResult(Product);
+            }
+
+        }
+
         // PUT api/<ProductController>/5
         [HttpPut("product/{id}")]
         public async Task<ActionResult> Put(int id, [FromBody] ProductModel value)

@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WaterWays.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/")]
     [ApiController]
     public class WaterPointController : ControllerBase
     {

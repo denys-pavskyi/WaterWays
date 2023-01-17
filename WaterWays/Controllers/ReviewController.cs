@@ -35,6 +35,25 @@ namespace WaterWays.Controllers
 
         }
 
+        // GET: api/<ReviewController>/waterPoint/{id}
+        [HttpGet]
+        [Route("reviews/waterPoint/{waterPointId}")]
+        public async Task<ActionResult<IEnumerable<ReviewModel>>> Get(int waterPointId)
+        {
+            var Reviews = await _service.GetAllByWaterPointId(waterPointId);
+
+            if (Reviews == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+
+                return new ObjectResult(Reviews);
+            }
+
+        }
+
         // GET api/<ReviewController>/5
         [HttpGet("review/{id}")]
         public async Task<ActionResult<ReviewModel>> GetById(int id)

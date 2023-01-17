@@ -9,5 +9,6 @@ namespace BusinessLogicLayer.Interfaces
 {
     public interface IReviewService: ICrud<ReviewModel>
     {
+        Task<IEnumerable<ReviewModel>> GetAllByWaterPointId(int waterPointId);
     }
 }

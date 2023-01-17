@@ -1,0 +1,7 @@
+.waterPointDiv{
+    background-color: #01347D;
+    min-height: 130px;
+    max-height: max-content;
+    color: lightgrey;
+    cursor: pointer;
+}

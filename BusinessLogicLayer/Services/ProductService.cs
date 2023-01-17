@@ -59,5 +59,11 @@ namespace BusinessLogicLayer.Services
             _unitOfWork.ProductRepository.Update(mapped);
             await _unitOfWork.SaveAsync();
         }
+
+        public async Task<IEnumerable<ProductModel>> GetAllByWaterPointId(int waterPointId)
+        {
+            IEnumerable<Product> unmappedProducts = await _unitOfWork.ProductRepository.GetAllWithDetailsAsync();
+            return _mapper.Map<IEnumerable<ProductModel>>(unmappedProducts.Where(x => x.WaterPointId==waterPointId));
+        }
     }
 }

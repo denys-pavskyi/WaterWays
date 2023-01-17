@@ -1,0 +1,5 @@
+<div class="review w-100" *ngIf="user$ | async as user">
+    <b>By:</b> <u>{{user.userName}}</u><br>
+    <b>Rating:</b> {{review.rating}}/5<br>
+    <b>Review:</b> {{review.reviewText}}
+</div>

@@ -1,0 +1,23 @@
+<div class="product w-100 row">
+    <div class="d-flex col-5 productInfo">
+        <b>Title:</b> <u>{{product.title}}</u><br>
+        <b>Type:</b> {{enumToString(product.type)}}<br>
+        <b>Description:</b> {{product.description}}<br>
+        <b>Price per unit:</b> {{product.price}}<br>
+        <b>Quantity available:</b> {{product.quantityAvailable}}<br>
+    </div>
+    <div class="d-flex col-7 buttonsDiv">
+        <input id="numberOfUnits" class="customInput" type="number" min="1" [max]="product.quantityAvailable">
+        <button class="btn btn-success custButton" (click)="addToCart()">
+            <b>+</b>
+        </button>
+        <button class="btn btn-danger custButton" (click)="deleteFromCart()">
+            <b>x</b>
+        </button>
+        <div class="infoAboutAddedProduct" *ngIf="isAdded">
+            Added<br>
+            {{quantity}}<br>
+            to the cart
+        </div>
+    </div>
+</div>

@@ -1,1 +1,29 @@
-<p>home works!</p>
+<div class="container-fluid cont">
+    <p *ngIf="loading" class="text-center text-lg">
+        Loading...
+    </p>
+    <div class="container-fluid main-panel">
+        <div class="row h-100">
+            <div class="col-4">
+                
+                <div class="water-points-container bg-grey">
+                    <div class="waterPointsDiv d-flex" *ngIf="waterPoints$ | async as waterPoints">
+                        <div *ngFor="let waterPoint of waterPoints" (click) = "modalService.openWaterPoint(waterPoint)">
+                            <app-water-point-item [waterPoint]="waterPoint"></app-water-point-item>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-8 mapDiv">
+                
+            </div>
+        </div>
+    </div>
+    <app-modal *ngIf="modalService.isShowingWaterPointDetails$| async" title="Water Point">
+        <app-water-point-info></app-water-point-info>
+    </app-modal>
+
+</div>

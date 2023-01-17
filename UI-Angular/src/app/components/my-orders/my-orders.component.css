@@ -1,0 +1,8 @@
+.customDiv{
+    min-height: 800px;
+}
+
+.ordersContainer{
+    flex-direction: column;
+    gap:30px;
+}

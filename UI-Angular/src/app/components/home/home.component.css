@@ -1,0 +1,35 @@
+.cont{
+    min-height: 800px;
+}
+
+.main-panel{
+    height: 600px;
+    width: 90%;
+    padding: 0px 50px 0px 50px;
+    background-color: #7C8FA1;
+}
+.water-points-container{
+    overflow: auto;
+    overflow-x: hidden;
+    height: 600px;
+}
+
+.waterPointsDiv{
+    flex-direction: column;
+    gap:10px;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  background-color: #04C988;
+}
+
+.mapDiv{
+    background-color: #1D82AD;
+}

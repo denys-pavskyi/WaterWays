@@ -35,6 +35,26 @@ namespace WaterWays.Controllers
 
         }
 
+        // GET: api/<OrderController>/user/{userId}
+        [HttpGet]
+        [Route("orders/user/{userId}")]
+        public async Task<ActionResult<IEnumerable<OrderModel>>> GetByUserId(int userId)
+        {
+            var Orders = await _service.GetAllByUserId(userId);
+
+            if (Orders == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+
+                return new ObjectResult(Orders);
+            }
+
+        }
+
+
         // GET api/<OrderController>/5
         [HttpGet("order/{id}")]
         public async Task<ActionResult<OrderModel>> GetById(int id)

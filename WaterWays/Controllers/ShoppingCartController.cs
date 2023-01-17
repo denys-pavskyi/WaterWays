@@ -35,6 +35,25 @@ namespace WaterWays.Controllers
 
         }
 
+        // GET: api/<ShoppingCartController>/user/{userId}
+        [HttpGet]
+        [Route("shoppingCarts/user/{userId}")]
+        public async Task<ActionResult<IEnumerable<ShoppingCartModel>>> GetByUserId(int userId)
+        {
+            var ShoppingCarts = await _service.GetAllByUserId(userId);
+
+            if (ShoppingCarts == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+
+                return new ObjectResult(ShoppingCarts);
+            }
+
+        }
+
         // GET api/<ShoppingCartController>/5
         [HttpGet("shoppingCart/{id}")]
         public async Task<ActionResult<ShoppingCartModel>> GetById(int id)

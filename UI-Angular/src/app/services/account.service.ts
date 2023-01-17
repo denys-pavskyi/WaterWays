@@ -14,7 +14,7 @@ export class AccountService implements OnInit {
 
   
   loginURL: string = 'http://localhost:47392/api/login';
-  registrationURL: string ='http://localhost:47392/api/user';
+  registrationURL: string ='http://localhost:47392/api/registeredUser';
 
   constructor(private http: HttpClient, 
     private errorService: ErrorService,
@@ -35,6 +35,13 @@ export class AccountService implements OnInit {
       catchError(this.errorHandler.bind(this))
     );
   }
+
+  getById(userId: number): Observable<RegisteredUser>{
+    return this.http.get<RegisteredUser>(`${this.registrationURL}/${userId}`).pipe(
+      catchError(this.errorHandler.bind(this))
+    )
+   }
+
   
   get isLogged(): boolean{
     if(window.localStorage.getItem("Token")){
@@ -48,6 +55,19 @@ export class AccountService implements OnInit {
     let role = window.localStorage.getItem('Role');
     if(role){
       if(role=="Admin"){
+        return true;
+      }else{
+        return false;
+      }
+    }else{
+      return false;
+    }
+  }
+
+  get isRepresentative():boolean{
+    let role = window.localStorage.getItem('Role');
+    if(role){
+      if(role=="WaterPointRepresentative"){
         return true;
       }else{
         return false;

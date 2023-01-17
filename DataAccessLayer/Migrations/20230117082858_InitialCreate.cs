@@ -145,6 +145,7 @@ namespace DataAccessLayer.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     WaterPointId = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false),
+                    UploadedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Rating = table.Column<int>(type: "int", nullable: false),
                     ReviewText = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false)
                 },
@@ -237,7 +238,7 @@ namespace DataAccessLayer.Migrations
                 values: new object[,]
                 {
                     { 1, "address1", "(068)-111-11-11", true, new DateTime(2022, 1, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temDuisfugiat", 70m, 1 },
-                    { 2, "address1", "(068)-111-11-11", false, new DateTime(2022, 1, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temDuisfugiat", 50m, 1 }
+                    { 2, "address1", "(068)-111-11-11", true, new DateTime(2022, 1, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temDuisfugiat", 50m, 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -246,24 +247,23 @@ namespace DataAccessLayer.Migrations
                 values: new object[,]
                 {
                     { 1, "doc_link1", new DateTime(2020, 6, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 0, 1 },
-                    { 2, "doc_link2", new DateTime(2018, 2, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 0, 2 },
-                    { 3, "doc_link3", new DateTime(2019, 10, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, 0, 3 }
+                    { 2, "doc_link2", new DateTime(2018, 2, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, 0, 2 },
+                    { 3, "doc_link3", new DateTime(2019, 10, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, 0, 3 },
+                    { 4, "doc_link4", new DateTime(2023, 1, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 0, 4 },
+                    { 5, "doc_link5", new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 0, 5 }
                 });
 
             migrationBuilder.InsertData(
                 table: "WaterPoints",
                 columns: new[] { "Id", "Address", "Description", "HasOrdering", "HasOwnDelivery", "HasSearchPriority", "IsVerified", "PhoneNumber", "Rating", "Title", "UserId", "VerificationDocumentId", "WaterPointType" },
-                values: new object[] { 1, "WaterPoint_address1", "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temDuisfugiat nulla pariaecat cupidata deserunt mollit anim id est laborum", true, true, false, true, "(068)-555-55-55", 3.0, "WaterPoint1", 2, 1, 1 });
-
-            migrationBuilder.InsertData(
-                table: "WaterPoints",
-                columns: new[] { "Id", "Address", "Description", "HasOrdering", "HasOwnDelivery", "HasSearchPriority", "IsVerified", "PhoneNumber", "Rating", "Title", "UserId", "VerificationDocumentId", "WaterPointType" },
-                values: new object[] { 2, "WaterPoint_address2", "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temDuisfugiat nulla pariaecat cupidata deserunt mollit anim id est laborum", false, false, false, true, "(068)-555-66-77", 4.0, "WaterPoint2", 2, 2, 0 });
-
-            migrationBuilder.InsertData(
-                table: "WaterPoints",
-                columns: new[] { "Id", "Address", "Description", "HasOrdering", "HasOwnDelivery", "HasSearchPriority", "IsVerified", "PhoneNumber", "Rating", "Title", "UserId", "VerificationDocumentId", "WaterPointType" },
-                values: new object[] { 3, "WaterPoint_address3", "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temDuisfugiat nulla pariaecat cupidata deserunt mollit anim id est laborum", true, true, false, true, "(068)-123-33-33", 3.5, "WaterPoint3", 2, 3, 1 });
+                values: new object[,]
+                {
+                    { 1, "WaterPoint_address1", "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temDuisfugiat nulla pariaecat cupidata deserunt mollit anim id est laborum", true, true, false, true, "(068)-555-55-55", 3.0, "WaterPoint1", 2, 1, 1 },
+                    { 2, "WaterPoint_address2", "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temDuisfugiat nulla pariaecat cupidata deserunt mollit anim id est laborum", false, false, false, true, "(068)-555-66-77", 4.0, "WaterPoint2", 3, 2, 0 },
+                    { 3, "WaterPoint_address3", "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temDuisfugiat nulla pariaecat cupidata deserunt mollit anim id est laborum", true, true, false, true, "(068)-123-33-33", 3.5, "WaterPoint3", 3, 3, 1 },
+                    { 4, "WaterPoint_address4", "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temDuisfugiat nulla pariaecat cupidata deserunt mollit anim id est laborum", true, true, false, true, "(068)-123-58-77", 4.0, "WaterPoint4", 2, 4, 0 },
+                    { 5, "WaterPoint_address5", "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temDuisfugiat nulla pariaecat cupidata deserunt mollit anim id est laborum", true, true, false, true, "(068)-776-58-77", 5.0, "WaterPoint5", 2, 5, 2 }
+                });
 
             migrationBuilder.InsertData(
                 table: "Products",
@@ -280,14 +280,14 @@ namespace DataAccessLayer.Migrations
 
             migrationBuilder.InsertData(
                 table: "Reviews",
-                columns: new[] { "Id", "Rating", "ReviewText", "UserId", "WaterPointId" },
+                columns: new[] { "Id", "Rating", "ReviewText", "UploadedOn", "UserId", "WaterPointId" },
                 values: new object[,]
                 {
-                    { 1, 3, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temDuisfugiat nulla pariaecat cupidata deserunt mollit anim id est laborum", 1, 1 },
-                    { 2, 5, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temDuisfugiat nulla pariaecat cupidata deserunt mollit anim id est laborum", 1, 2 },
-                    { 3, 3, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temDuisfugiat nulla pariaecat cupidata deserunt mollit anim id est laborum", 2, 2 },
-                    { 4, 4, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temDuisfugiat nulla pariaecat cupidata deserunt mollit anim id est laborum", 1, 3 },
-                    { 5, 3, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temDuisfugiat nulla pariaecat cupidata deserunt mollit anim id est laborum", 2, 3 }
+                    { 1, 3, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temDuisfugiat nulla pariaecat cupidata deserunt mollit anim id est laborum", new DateTime(2023, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1 },
+                    { 2, 5, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temDuisfugiat nulla pariaecat cupidata deserunt mollit anim id est laborum", new DateTime(2023, 1, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 2 },
+                    { 3, 3, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temDuisfugiat nulla pariaecat cupidata deserunt mollit anim id est laborum", new DateTime(2023, 1, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 2 },
+                    { 4, 4, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temDuisfugiat nulla pariaecat cupidata deserunt mollit anim id est laborum", new DateTime(2023, 1, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 3 },
+                    { 5, 3, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temDuisfugiat nulla pariaecat cupidata deserunt mollit anim id est laborum", new DateTime(2023, 1, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 3 }
                 });
 
             migrationBuilder.InsertData(

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(WaterWaysDbContext))]
-    [Migration("20230116231109_InitialCreate")]
+    [Migration("20230117082858_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -86,7 +86,7 @@ namespace DataAccessLayer.Migrations
                             Id = 2,
                             Address = "address1",
                             ContactPhone = "(068)-111-11-11",
-                            IsToBeDelivered = false,
+                            IsToBeDelivered = true,
                             OrderDate = new DateTime(2022, 1, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OrderStatus = 3,
                             OrderText = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temDuisfugiat",
@@ -383,6 +383,9 @@ namespace DataAccessLayer.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
+                    b.Property<DateTime>("UploadedOn")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
@@ -403,6 +406,7 @@ namespace DataAccessLayer.Migrations
                             Id = 1,
                             Rating = 3,
                             ReviewText = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temDuisfugiat nulla pariaecat cupidata deserunt mollit anim id est laborum",
+                            UploadedOn = new DateTime(2023, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = 1,
                             WaterPointId = 1
                         },
@@ -411,6 +415,7 @@ namespace DataAccessLayer.Migrations
                             Id = 2,
                             Rating = 5,
                             ReviewText = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temDuisfugiat nulla pariaecat cupidata deserunt mollit anim id est laborum",
+                            UploadedOn = new DateTime(2023, 1, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = 1,
                             WaterPointId = 2
                         },
@@ -419,6 +424,7 @@ namespace DataAccessLayer.Migrations
                             Id = 3,
                             Rating = 3,
                             ReviewText = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temDuisfugiat nulla pariaecat cupidata deserunt mollit anim id est laborum",
+                            UploadedOn = new DateTime(2023, 1, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = 2,
                             WaterPointId = 2
                         },
@@ -427,6 +433,7 @@ namespace DataAccessLayer.Migrations
                             Id = 4,
                             Rating = 4,
                             ReviewText = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temDuisfugiat nulla pariaecat cupidata deserunt mollit anim id est laborum",
+                            UploadedOn = new DateTime(2023, 1, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = 1,
                             WaterPointId = 3
                         },
@@ -435,6 +442,7 @@ namespace DataAccessLayer.Migrations
                             Id = 5,
                             Rating = 3,
                             ReviewText = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temDuisfugiat nulla pariaecat cupidata deserunt mollit anim id est laborum",
+                            UploadedOn = new DateTime(2023, 1, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = 2,
                             WaterPointId = 3
                         });
@@ -517,7 +525,7 @@ namespace DataAccessLayer.Migrations
                             Id = 2,
                             DocumentLink = "doc_link2",
                             UploadDate = new DateTime(2018, 2, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = 2,
+                            UserId = 3,
                             VerificationStatus = 0,
                             WaterPointId = 2
                         },
@@ -529,6 +537,24 @@ namespace DataAccessLayer.Migrations
                             UserId = 3,
                             VerificationStatus = 0,
                             WaterPointId = 3
+                        },
+                        new
+                        {
+                            Id = 4,
+                            DocumentLink = "doc_link4",
+                            UploadDate = new DateTime(2023, 1, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = 2,
+                            VerificationStatus = 0,
+                            WaterPointId = 4
+                        },
+                        new
+                        {
+                            Id = 5,
+                            DocumentLink = "doc_link5",
+                            UploadDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = 2,
+                            VerificationStatus = 0,
+                            WaterPointId = 5
                         });
                 });
 
@@ -623,7 +649,7 @@ namespace DataAccessLayer.Migrations
                             PhoneNumber = "(068)-555-66-77",
                             Rating = 4.0,
                             Title = "WaterPoint2",
-                            UserId = 2,
+                            UserId = 3,
                             VerificationDocumentId = 2,
                             WaterPointType = 0
                         },
@@ -639,9 +665,41 @@ namespace DataAccessLayer.Migrations
                             PhoneNumber = "(068)-123-33-33",
                             Rating = 3.5,
                             Title = "WaterPoint3",
-                            UserId = 2,
+                            UserId = 3,
                             VerificationDocumentId = 3,
                             WaterPointType = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Address = "WaterPoint_address4",
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temDuisfugiat nulla pariaecat cupidata deserunt mollit anim id est laborum",
+                            HasOrdering = true,
+                            HasOwnDelivery = true,
+                            HasSearchPriority = false,
+                            IsVerified = true,
+                            PhoneNumber = "(068)-123-58-77",
+                            Rating = 4.0,
+                            Title = "WaterPoint4",
+                            UserId = 2,
+                            VerificationDocumentId = 4,
+                            WaterPointType = 0
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Address = "WaterPoint_address5",
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temDuisfugiat nulla pariaecat cupidata deserunt mollit anim id est laborum",
+                            HasOrdering = true,
+                            HasOwnDelivery = true,
+                            HasSearchPriority = false,
+                            IsVerified = true,
+                            PhoneNumber = "(068)-776-58-77",
+                            Rating = 5.0,
+                            Title = "WaterPoint5",
+                            UserId = 2,
+                            VerificationDocumentId = 5,
+                            WaterPointType = 2
                         });
                 });
 

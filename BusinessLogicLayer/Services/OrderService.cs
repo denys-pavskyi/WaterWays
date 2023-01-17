@@ -59,5 +59,11 @@ namespace BusinessLogicLayer.Services
             _unitOfWork.OrderRepository.Update(mapped);
             await _unitOfWork.SaveAsync();
         }
+
+        public async Task<IEnumerable<OrderModel>> GetAllByUserId(int userId)
+        {
+            IEnumerable<Order> unmappedOrders = await _unitOfWork.OrderRepository.GetAllWithDetailsAsync();
+            return _mapper.Map<IEnumerable<OrderModel>>(unmappedOrders.Where(x => x.UserId==userId));
+        }
     }
 }

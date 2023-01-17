@@ -1,1 +1,25 @@
-<p>modal works!</p>
+<div class="closeField"
+(click)="modalsService.close()"
+>    
+</div>
+
+
+<div
+    class="modalContent rounded"
+>
+
+    
+    
+    <div class="contentDiv">
+        <div class="titleDiv">
+            <h1 class="text-center"><u>{{title}}</u></h1>
+        </div>
+        <div class="formDiv">
+            <ng-content></ng-content>
+        </div>
+        
+    </div>
+    
+    
+    
+</div>

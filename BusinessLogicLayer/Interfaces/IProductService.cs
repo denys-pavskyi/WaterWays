@@ -10,5 +10,6 @@ namespace BusinessLogicLayer.Interfaces
 {
     public interface IProductService: ICrud<ProductModel>
     {
+        Task<IEnumerable<ProductModel>> GetAllByWaterPointId(int waterPointId);
     }
 }

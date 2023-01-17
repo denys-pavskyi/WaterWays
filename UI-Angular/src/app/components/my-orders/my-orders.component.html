@@ -1,0 +1,7 @@
+<div class="container-fluid customDiv">
+    <div class="d-flex ordersContainer w-95" *ngIf="orders$ | async as orders">
+        <div *ngFor="let order of orders">
+            <app-my-orders-item [order]="order"></app-my-orders-item>
+        </div>
+    </div>
+</div>
