@@ -1,3 +1,16 @@
 .customConfirmationDiv{
     min-height: 800px;
 }
+
+.ordersContainer{
+    flex-direction: column;
+    gap:15px;
+}
+
+form{
+    padding: 20px 0px 50px 10px;
+}
+
+.validationFailed{
+    color:red;
+}

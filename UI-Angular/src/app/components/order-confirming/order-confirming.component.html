@@ -1,7 +1,47 @@
 <div class="container-fluid customConfirmationDiv">
+    
+    <p *ngIf="loading" class="text-center text-lg">
+        Loading...
+    </p>
+
+
     <div class="d-flex ordersContainer w-95" *ngIf="items$ | async as items">
         <div *ngFor="let item of items">
             <app-order-confirming-item [item]="item"></app-order-confirming-item>
         </div>
     </div>
+    <hr>
+    <form [formGroup]="form">
+        <br>
+        <b>Total order price: {{totalPrice}}</b>
+        <div>
+            <label>Address: </label>
+            <input type="text" name="address" formControlName="address">
+            <div class="validationFailed" *ngIf="form.controls['address'].invalid"> Address is not valid</div>
+        
+        </div>
+        <div>
+            <label>Order text: </label>
+            <input type="text" name="orderText" formControlName="orderText">
+            <div class="validationFailed" *ngIf="form.controls['orderText'].invalid"> Order text is not valid</div>
+        
+        </div>
+
+        <div>
+            <label>Phone: </label>
+            <input type="text" name="phone" formControlName="phone">
+            <div class="validationFailed" *ngIf="form.controls['phone'].invalid"> Phone is not valid</div>
+        
+        </div>
+        <br>
+        <div>
+            <label>Date: </label>
+            <input type="date" name="date" formControlName="date">
+            <div class="validationFailed" *ngIf="form.controls['date'].invalid"> Order date is not valid</div>
+        </div><br>
+
+        <button class="btn btn-success" height="40px" width="80px" (click)="OnSubmit()">
+            Submit
+        </button>
+    </form>
 </div>

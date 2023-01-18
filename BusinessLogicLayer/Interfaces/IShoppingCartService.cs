@@ -11,5 +11,8 @@ namespace BusinessLogicLayer.Interfaces
     {
         Task<IEnumerable<ShoppingCartModel>> GetAllByUserId(int userId);
         Task<int> FindByProductAndUserId(int productId, int userId);
+
+        Task<decimal> GetTotalPriceOfItems();
+        Task<bool> ShoppingCartToOrderDetails(int userId, int orderId);
     }
 }

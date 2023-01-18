@@ -11,12 +11,12 @@ export class Order{
     totalPrice: number;
     isToBeDelivered: boolean;
     orderStatus: OrderStatus;
-    orderDetailIds: Array<number>;
+    orderDetailIds!: Array<number>;
 
 
     constructor(orderText: string, userId: number, orderDate: Date, contactPhone: string, 
     address: string, totalPrice: number, isToBeDelivered: boolean, 
-    orderStatus: OrderStatus, orderDetailIds: Array<number>){
+    orderStatus: OrderStatus){
 
         this.orderText = orderText;
         this.userId = userId;
@@ -26,7 +26,6 @@ export class Order{
         this.totalPrice = totalPrice;
         this.isToBeDelivered = isToBeDelivered;
         this.orderStatus = orderStatus;
-        this.orderDetailIds = orderDetailIds;
     }
 
 }

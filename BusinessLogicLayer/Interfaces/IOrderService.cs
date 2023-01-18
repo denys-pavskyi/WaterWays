@@ -10,5 +10,7 @@ namespace BusinessLogicLayer.Interfaces
     public interface IOrderService: ICrud<OrderModel>
     {
         Task<IEnumerable<OrderModel>> GetAllByUserId(int userId);
+
+        
     }
 }

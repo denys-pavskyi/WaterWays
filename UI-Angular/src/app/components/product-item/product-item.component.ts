@@ -17,6 +17,7 @@ export class ProductItemComponent implements OnInit {
 
   form: FormGroup;
   isAdded:boolean = false;
+  quantity:number = 0;
 
   constructor(public orderService: OrderService, private errorService: OrderService){
     this.form = new FormGroup({
@@ -34,13 +35,16 @@ export class ProductItemComponent implements OnInit {
   addToCart(): void{
     const productId = this.product.id;
     const userId = Number(window.localStorage.getItem('ID'));
-    const quantity = this.form.get('quantity')?.value;
+    this.quantity = Number(this.form.get('quantity')?.value);
     const unitPrice = this.product.price;
-    const totalPrice = quantity * unitPrice;
+    const totalPrice = this.quantity * unitPrice;
 
-    if(quantity!="" && quantity!=0){
-      let shoppingCart = new ShoppingCart(productId, quantity, unitPrice, totalPrice, userId);
+    if(this.quantity!=0){
+      this.isAdded = true;
+      let shoppingCart = new ShoppingCart(productId, this.quantity, unitPrice, totalPrice, userId);
       this.orderService.PutNewShoppingCart(shoppingCart).subscribe();
+    }else{
+      this.isAdded = false;
     }
     
   }

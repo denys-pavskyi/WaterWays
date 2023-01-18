@@ -20,6 +20,13 @@ export class OrderService {
     
   }
 
+  GetTotalPrice():Observable<number>{
+    return this.http.get<number>(`${this.shoppingCartURL}/getTotalPrice`);
+  }
+
+  ShoppingCartToOrderDetails(userId: number, orderId: number){
+    return this.http.get<number>(`${this.shoppingCartURL}/toOrderDetails/${userId}/${orderId}`);
+  }
 
   AddOrder(order: Order):Observable<Order>{
     return this.http.post<Order>(`${this.orderURL}`, order).pipe(

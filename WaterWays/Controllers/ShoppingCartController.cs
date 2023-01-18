@@ -55,6 +55,35 @@ namespace WaterWays.Controllers
 
         }
 
+
+        [HttpGet]
+        [Route("shoppingCart/getTotalPrice")]
+
+        public async Task<decimal> GetTotalPrice()
+        {
+            decimal totalPrice = await _service.GetTotalPriceOfItems();
+
+            return totalPrice;
+        }
+
+
+        [HttpPut]
+        [Route("shoppingCart/toOrderDetails/{userId}/{orderId}")]
+        public async Task<ActionResult> ShoppingCartToOrderDetails(int userId, int orderId)
+        {
+
+            bool result = await _service.ShoppingCartToOrderDetails(userId, orderId);
+
+            if (result)
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
         // GET api/<ShoppingCartController>/5
         [HttpGet("shoppingCart/{id}")]
         public async Task<ActionResult<ShoppingCartModel>> GetById(int id)

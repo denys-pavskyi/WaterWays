@@ -25,8 +25,8 @@ export class WaterPointService {
     )
    }
 
-   getById(waterPointId: number): Observable<WaterPoint[]>{
-    return this.http.get<WaterPoint[]>(`${this.waterPointURL}/${waterPointId}`).pipe(
+   getById(waterPointId: number): Observable<WaterPoint>{
+    return this.http.get<WaterPoint>(`${this.waterPointURL}/${waterPointId}`).pipe(
       catchError(this.errorHandler.bind(this))
     )
    }

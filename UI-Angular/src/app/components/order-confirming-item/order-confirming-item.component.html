@@ -1,8 +1,15 @@
-<div class="item w-100">
-    <!-- <b>Id:</b> <u>{{order.id}}</u><br>
-    <b>Address:</b> {{order.address}}<br>
-    <b>Contact phone:</b> {{order.contactPhone}}<br>
-    <b>Total price:</b> {{order.totalPrice}}<br>
-    <b>OrderDate:</b> {{order.orderDate}}<br>
-    <b>Status:</b> {{enumToString(order.orderStatus)}}<br> -->
+<div class="item w-100 row" *ngIf="product$ | async as product">
+    <div class="col-9">
+        <b>Id:</b> <u>{{item.id}}</u><br>
+        <b>Title:</b> {{product.title}}<br>
+        <b>Quantity:</b> {{item.quantity}}<br>
+        <b>Unit price:</b> {{item.unitPrice}}<br>
+        <hr>
+        <b>Total price:</b> {{item.totalPrice}}<br>
+    </div>
+
+    <div class="col-3">
+        <button class="btn btn-danger" (click)="deleteItem()">X</button>
+    </div>
+    
 </div>

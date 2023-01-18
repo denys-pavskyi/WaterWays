@@ -81,5 +81,39 @@ namespace BusinessLogicLayer.Services
                 return -1;
             }
         }
+
+        public async Task<decimal> GetTotalPriceOfItems()
+        {
+            List<ShoppingCart> unmappedShoppingCarts = await _unitOfWork.ShoppingCartRepository.GetAllWithNoTrackingAsync() as List<ShoppingCart>;
+            decimal totalPrice = 0;
+            for(int i=0;i< unmappedShoppingCarts.Count(); i++)
+            {
+                totalPrice += unmappedShoppingCarts[i].TotalPrice;
+            }
+            return totalPrice;
+        }
+
+        public async Task<bool> ShoppingCartToOrderDetails(int userId, int orderId){
+            List<ShoppingCart> unmappedShoppingCarts = await _unitOfWork.ShoppingCartRepository.GetAllWithNoTrackingAsync() as List<ShoppingCart>;
+            unmappedShoppingCarts = unmappedShoppingCarts.Where(x => x.UserId == userId).ToList();
+            for (int i = 0; i < unmappedShoppingCarts.Count(); i++)
+            {
+                OrderDetail newOrderDetail = new OrderDetail() {
+                    OrderId = orderId,
+                    ProductId = unmappedShoppingCarts[i].ProductId,
+                    Quantity = unmappedShoppingCarts[i].Quantity,
+                    TotalPrice = unmappedShoppingCarts[i].TotalPrice,
+                    UnitPrice = unmappedShoppingCarts[i].UnitPrice     
+                };
+                await _unitOfWork.OrderDetailRepository.AddAsync(newOrderDetail);
+                await _unitOfWork.ShoppingCartRepository.DeleteByIdAsync(unmappedShoppingCarts[i].Id);
+            }
+            await _unitOfWork.SaveAsync();
+
+
+
+            return true;
+        }
+
     }
 }

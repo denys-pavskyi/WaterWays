@@ -19,7 +19,7 @@
     <div class="col-4 buttonsDiv">
         <form [formGroup]="form">
             <span>
-                <input [(ngModel)]="quantity" id="numberOfUnits" class="customInput" type="number" min="1" [max]="product.quantityAvailable">
+                <input formControlName="quantity" id="numberOfUnits" class="customInput" type="number" min="1" [max]="product.quantityAvailable">
                 ({{product.quantityAvailable}})<br>
             </span>
             <button class="btn btn-success custButton" (click)="addToCart()">

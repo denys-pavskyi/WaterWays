@@ -1,1 +1,11 @@
-<p>profile works!</p>
+<div class="conatiner-fluid profileCont" *ngIf="user$ | async as user">
+    <b>First name:</b> <u>{{user.firstName}}</u><br>
+    <b>Last name:</b> <u>{{user.lastName}}</u><br>
+    <b>Username:</b> <u>{{user.userName}}</u><br>
+    <b>Email:</b> <u>{{user.email}}</u><br>
+    <b>Phone number:</b> <u>{{user.phone}}</u><br>
+    <b>Address:</b> <u>{{user.address}}</u><br>
+    
+
+
+</div>
