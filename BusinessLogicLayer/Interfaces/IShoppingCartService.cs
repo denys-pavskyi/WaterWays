@@ -10,5 +10,6 @@ namespace BusinessLogicLayer.Interfaces
     public interface IShoppingCartService: ICrud<ShoppingCartModel>
     {
         Task<IEnumerable<ShoppingCartModel>> GetAllByUserId(int userId);
+        Task<int> FindByProductAndUserId(int productId, int userId);
     }
 }

@@ -14,7 +14,7 @@ namespace DataAccessLayer.Entities
         [Required, StringLength(50)]
         public string Title { get; set; }
 
-        [Required, StringLength(150)]
+        [Required, StringLength(200)]
         public string Description { get; set; }
 
         [Required]
@@ -40,6 +40,9 @@ namespace DataAccessLayer.Entities
 
         [Required]
         public bool HasSearchPriority { get; set; }
+
+        [StringLength(50)]
+        public string photoUrl { get; set; }
 
         [Required, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int UserId { get; set; }

@@ -13,6 +13,8 @@ namespace BusinessLogicLayer.Models
 
         public int ProductId { get; set; }
 
+        public int UserId { get; set; }
+
         public decimal Quantity { get; set; }
 
         public decimal UnitPrice { get; set; }

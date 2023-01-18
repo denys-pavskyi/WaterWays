@@ -33,8 +33,8 @@ export class OrderService {
     );
   }
 
-  AddShoppingCart(shoppingCart: ShoppingCart):Observable<ShoppingCart>{
-    return this.http.post<ShoppingCart>(`${this.shoppingCartURL}`, shoppingCart).pipe(
+  PutNewShoppingCart(shoppingCart: ShoppingCart):Observable<ShoppingCart>{
+    return this.http.put<ShoppingCart>(`${this.shoppingCartURL}`, shoppingCart).pipe(
       catchError(this.errorHandler.bind(this))
     );
   }

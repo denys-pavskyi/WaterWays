@@ -16,6 +16,8 @@ namespace BusinessLogicLayer.Models
 
         public string Description { get; set; }
 
+        public string photoUrl { get; set; }
+
         public ProductType Type { get; set; }
 
         public int WaterPointId { get; set; }

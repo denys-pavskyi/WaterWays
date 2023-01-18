@@ -20,4 +20,12 @@ export class WaterPointItemComponent implements OnInit {
   enumToString(enumValue: any): string {
     return WaterPointType[enumValue];
   }
+
+  getPhotoUrl(){
+    if(this.waterPoint.photoUrl!= null && this.waterPoint.photoUrl!=""){
+      return this.waterPoint.photoUrl;
+    }else{
+      return "no_photo.PNG";
+    }
+  }
 }

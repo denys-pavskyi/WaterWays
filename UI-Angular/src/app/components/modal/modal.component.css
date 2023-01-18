@@ -9,17 +9,28 @@
 }
 
 .modalContent{
-    width:600px;
-    height:600px;
+    width:1000px;
+    height:650px;
     position: fixed;
-    top: calc(50vh - (600px / 2));
-    left: calc(50vw - (600px / 2)); 
+    top: calc(50vh - (650px / 2));
+    left: calc(50vw - (1000px / 2)); 
     background-color: #EDD7CC;
     border: 2px solid black;
     display: flex;
     justify-content: center;
     overflow: auto;
     
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  background-color: #7C8FA1;
 }
 
 .titleDiv{
@@ -29,7 +40,4 @@
     text-align: center;
 }
 
-.contentDiv{
-    
-}
 

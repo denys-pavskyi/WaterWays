@@ -1,26 +1,45 @@
 <div class="container-fluid">
-    <b>{{waterPoint.title}}</b>
-    Reviews: {{waterPoint.reviewIds.length}}<br>
-    Address: {{waterPoint.address}}<br>
-    Rating: {{waterPoint.rating}}/5 <img src="assets/icons/star.png" height="20px"><br>
-    Type: {{enumToString(waterPoint.waterPointType)}}<br>
-    <div class="description">
-        Description: {{waterPoint.description}}
-    </div><br>
-    <b>Reviews:</b><br>
-    <div class="d-flex itemsDiv" *ngIf="reviews$ | async as reviews">
-        <div *ngFor="let review of reviews">
-            <app-review-item [review]="review"></app-review-item>
+    
+    
+    <div class="row">
+        <div class="col">
+            <div class="photoDiv d-block">
+                <img class="photoPreview" [src]="'/assets/images/'+getPhotoUrl()">
+            </div>
+            
+            Title: <b>{{waterPoint.title}}</b><br>
+            Reviews: {{waterPoint.reviewIds.length}}<br>
+            Address: {{waterPoint.address}}<br>
+            Rating: {{waterPoint.rating}}/5 <img src="assets/icons/star.png" height="20px"><br>
+            Type: {{enumToString(waterPoint.waterPointType)}}<br>
+            <div class="description">
+             Description: {{waterPoint.description}}
+            </div>
         </div>
+        <div class="col">
+            <b>Reviews:</b><br>
+            <div class="d-flex itemsDiv" *ngIf="reviews$ | async as reviews">
+            <div *ngFor="let review of reviews">
+                <app-review-item [review]="review"></app-review-item>
+            </div>
 
-    </div>
-    <br>Products:<br>
-    <div class="d-flex itemsDiv" *ngIf="products$ | async as products">
-        <div *ngFor="let product of products">
-            <app-product-item [product]="product"></app-product-item>
+            </div>
         </div>
-
     </div>
+
+    <div class="row" *ngIf="waterPoint.hasOrdering">
+        <div class="productsTitle"><b>Products:</b></div>
+        <div class="d-flex productsDiv" *ngIf="products$ | async as products">
+            <div class="productItem" *ngFor="let product of products">
+                <app-product-item [product]="product"></app-product-item>
+            </div>
+
+        </div>
+    </div>
+
+    
+    
+    
 
 
 </div>

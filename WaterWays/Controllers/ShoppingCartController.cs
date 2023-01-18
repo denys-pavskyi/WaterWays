@@ -1,5 +1,6 @@
 ﻿using BusinessLogicLayer.Interfaces;
 using BusinessLogicLayer.Models;
+using DataAccessLayer.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,16 +22,16 @@ namespace WaterWays.Controllers
         [Route("shoppingCarts")]
         public async Task<ActionResult<IEnumerable<ShoppingCartModel>>> Get()
         {
-            var ShoppingCarts = await _service.GetAllAsync();
+            var shoppingCarts = await _service.GetAllAsync();
 
-            if (ShoppingCarts == null)
+            if (shoppingCarts == null)
             {
                 return NotFound();
             }
             else
             {
 
-                return new ObjectResult(ShoppingCarts);
+                return new ObjectResult(shoppingCarts);
             }
 
         }
@@ -40,16 +41,16 @@ namespace WaterWays.Controllers
         [Route("shoppingCarts/user/{userId}")]
         public async Task<ActionResult<IEnumerable<ShoppingCartModel>>> GetByUserId(int userId)
         {
-            var ShoppingCarts = await _service.GetAllByUserId(userId);
+            var shoppingCarts = await _service.GetAllByUserId(userId);
 
-            if (ShoppingCarts == null)
+            if (shoppingCarts == null)
             {
                 return NotFound();
             }
             else
             {
 
-                return new ObjectResult(ShoppingCarts);
+                return new ObjectResult(shoppingCarts);
             }
 
         }
@@ -58,14 +59,14 @@ namespace WaterWays.Controllers
         [HttpGet("shoppingCart/{id}")]
         public async Task<ActionResult<ShoppingCartModel>> GetById(int id)
         {
-            var ShoppingCart = await _service.GetByIdAsync(id);
-            if (ShoppingCart == null)
+            var shoppingCart = await _service.GetByIdAsync(id);
+            if (shoppingCart == null)
             {
                 return NotFound();
             }
             else
             {
-                return new ObjectResult(ShoppingCart);
+                return new ObjectResult(shoppingCart);
             }
         }
 
@@ -73,32 +74,45 @@ namespace WaterWays.Controllers
 
         // POST api/ShoppingCartPhoto
         [HttpPost("shoppingCart")]
-        public async Task<ActionResult> Post([FromBody] ShoppingCartModel ShoppingCart)
+        public async Task<ActionResult> Post([FromBody] ShoppingCartModel shoppingCart)
         {
-            if (ShoppingCart == null)
+            if (shoppingCart == null)
             {
                 return BadRequest();
             }
             try
             {
-                await _service.AddAsync(ShoppingCart);
+                await _service.AddAsync(shoppingCart);
             }
             catch
             {
                 return BadRequest();
             }
 
-            return Ok(ShoppingCart);
+            return Ok(shoppingCart);
 
         }
 
         // PUT api/<ShoppingCartController>/5
-        [HttpPut("shoppingCart/{id}")]
-        public async Task<ActionResult> Put(int id, [FromBody] ShoppingCartModel value)
+        [HttpPut("shoppingCart")]
+        public async Task<ActionResult> Put([FromBody] ShoppingCartModel value)
         {
+
             try
             {
-                await _service.UpdateAsync(value);
+                int cart_id = await _service.FindByProductAndUserId(value.ProductId, value.UserId);
+                
+
+                if (cart_id < 0)
+                {
+                    await _service.AddAsync(value);
+                    return Ok(value);
+                }
+                else
+                {
+                    value.Id = cart_id;
+                    await _service.UpdateAsync(value);
+                }  
             }
             catch
             {
@@ -106,13 +120,16 @@ namespace WaterWays.Controllers
             }
 
 
-            if (await _service.GetByIdAsync(id) == null)
+            if (await _service.GetByIdAsync(value.Id) == null)
             {
                 return BadRequest();
             }
 
             return Ok(value);
         }
+
+
+
 
         // DELETE api/<ShoppingCartController>/5
         [HttpDelete("shoppingCart/{id}")]

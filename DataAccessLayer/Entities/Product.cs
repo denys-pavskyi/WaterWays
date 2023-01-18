@@ -12,7 +12,7 @@ namespace DataAccessLayer.Entities
         [Required, StringLength(100)]
         public string Title { get; set; }
 
-        [StringLength(150)]
+        [StringLength(200)]
         public string Description { get; set; }
 
         [Required]
@@ -20,6 +20,9 @@ namespace DataAccessLayer.Entities
 
         [Required]
         public int WaterPointId { get; set; }
+
+        [StringLength(50)]
+        public string photoUrl { get; set; }
 
         [Required]
         public decimal Price { get; set; }

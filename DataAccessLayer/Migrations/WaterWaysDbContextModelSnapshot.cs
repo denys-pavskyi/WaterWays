@@ -140,8 +140,8 @@ namespace DataAccessLayer.Migrations
                             OrderId = 1,
                             ProductId = 6,
                             Quantity = 3m,
-                            TotalPrice = 30m,
-                            UnitPrice = 10m
+                            TotalPrice = 300m,
+                            UnitPrice = 100m
                         },
                         new
                         {
@@ -164,8 +164,8 @@ namespace DataAccessLayer.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
@@ -184,6 +184,11 @@ namespace DataAccessLayer.Migrations
                     b.Property<int>("WaterPointId")
                         .HasColumnType("int");
 
+                    b.Property<string>("photoUrl")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("WaterPointId");
@@ -199,7 +204,8 @@ namespace DataAccessLayer.Migrations
                             QuantityAvailable = 100m,
                             Title = "Bottled water",
                             Type = 0,
-                            WaterPointId = 1
+                            WaterPointId = 1,
+                            photoUrl = "still_water1.png"
                         },
                         new
                         {
@@ -209,7 +215,8 @@ namespace DataAccessLayer.Migrations
                             QuantityAvailable = 150m,
                             Title = "Bottled sparkling water",
                             Type = 1,
-                            WaterPointId = 1
+                            WaterPointId = 1,
+                            photoUrl = "sparkling1.PNG"
                         },
                         new
                         {
@@ -219,7 +226,8 @@ namespace DataAccessLayer.Migrations
                             QuantityAvailable = 100m,
                             Title = "Water filters",
                             Type = 3,
-                            WaterPointId = 1
+                            WaterPointId = 1,
+                            photoUrl = "water-filters1.jpg"
                         },
                         new
                         {
@@ -229,7 +237,8 @@ namespace DataAccessLayer.Migrations
                             QuantityAvailable = 200m,
                             Title = "Still drinkable water",
                             Type = 0,
-                            WaterPointId = 3
+                            WaterPointId = 3,
+                            photoUrl = "still_water2l.jpg"
                         },
                         new
                         {
@@ -239,17 +248,19 @@ namespace DataAccessLayer.Migrations
                             QuantityAvailable = 200m,
                             Title = "Industrial water water",
                             Type = 2,
-                            WaterPointId = 3
+                            WaterPointId = 3,
+                            photoUrl = "industrial_water1.jpg"
                         },
                         new
                         {
                             Id = 6,
                             Description = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temDuisfugiat nulla pariaecat cupidata deserunt mollit anim id est laborum",
-                            Price = 10m,
-                            QuantityAvailable = 100m,
-                            Title = "Plastic bottle 5 liter",
+                            Price = 100m,
+                            QuantityAvailable = 20m,
+                            Title = "Water cooler",
                             Type = 3,
-                            WaterPointId = 1
+                            WaterPointId = 1,
+                            photoUrl = "water_cooler1.jpg"
                         });
                 });
 
@@ -362,6 +373,18 @@ namespace DataAccessLayer.Migrations
                             Phone = "(068)-425-64-21",
                             Role = 0,
                             UserName = "user5"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Address = "address6",
+                            Email = "user6@gmai.com",
+                            FirstName = "Representative6",
+                            LastName = "last_name6",
+                            Password = "password6",
+                            Phone = "(068)-635-56-33",
+                            Role = 1,
+                            UserName = "user6"
                         });
                 });
 
@@ -553,6 +576,24 @@ namespace DataAccessLayer.Migrations
                             UserId = 2,
                             VerificationStatus = 0,
                             WaterPointId = 5
+                        },
+                        new
+                        {
+                            Id = 6,
+                            DocumentLink = "doc_link6",
+                            UploadDate = new DateTime(2023, 1, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = 6,
+                            VerificationStatus = 2,
+                            WaterPointId = 6
+                        },
+                        new
+                        {
+                            Id = 7,
+                            DocumentLink = "doc_link7",
+                            UploadDate = new DateTime(2023, 1, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = 6,
+                            VerificationStatus = 2,
+                            WaterPointId = 7
                         });
                 });
 
@@ -571,8 +612,8 @@ namespace DataAccessLayer.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<bool>("HasOrdering")
                         .HasColumnType("bit");
@@ -609,6 +650,11 @@ namespace DataAccessLayer.Migrations
                     b.Property<int>("WaterPointType")
                         .HasColumnType("int");
 
+                    b.Property<string>("photoUrl")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("UserId");
@@ -622,82 +668,121 @@ namespace DataAccessLayer.Migrations
                         new
                         {
                             Id = 1,
-                            Address = "WaterPoint_address1",
-                            Description = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temDuisfugiat nulla pariaecat cupidata deserunt mollit anim id est laborum",
+                            Address = "10, Kreshchatyk St, Kyiv",
+                            Description = "private water point offers high-quality purified drinking water for purchase",
                             HasOrdering = true,
                             HasOwnDelivery = true,
                             HasSearchPriority = false,
                             IsVerified = true,
                             PhoneNumber = "(068)-555-55-55",
                             Rating = 3.0,
-                            Title = "WaterPoint1",
+                            Title = "Aqua Pure",
                             UserId = 2,
                             VerificationDocumentId = 1,
-                            WaterPointType = 1
+                            WaterPointType = 1,
+                            photoUrl = "water_delivery1.png"
                         },
                         new
                         {
                             Id = 2,
-                            Address = "WaterPoint_address2",
-                            Description = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temDuisfugiat nulla pariaecat cupidata deserunt mollit anim id est laborum",
+                            Address = "2, Hrushevskoho St, Kyiv",
+                            Description = "pump station offers a free water dispenser for the public to use. It is a community-funded initiative to provide clean and safe drinking water for all",
                             HasOrdering = false,
                             HasOwnDelivery = false,
                             HasSearchPriority = false,
                             IsVerified = true,
                             PhoneNumber = "(068)-555-66-77",
                             Rating = 4.0,
-                            Title = "WaterPoint2",
+                            Title = "Pump station №452",
                             UserId = 3,
                             VerificationDocumentId = 2,
-                            WaterPointType = 0
+                            WaterPointType = 0,
+                            photoUrl = "pump_station2.jpg"
                         },
                         new
                         {
                             Id = 3,
-                            Address = "WaterPoint_address3",
-                            Description = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temDuisfugiat nulla pariaecat cupidata deserunt mollit anim id est laborum",
+                            Address = "5, Volodymyrska St, Kyiv",
+                            Description = "private water point sells natural spring water sourced from a nearby mountain",
                             HasOrdering = true,
                             HasOwnDelivery = true,
                             HasSearchPriority = false,
                             IsVerified = true,
                             PhoneNumber = "(068)-123-33-33",
                             Rating = 3.5,
-                            Title = "WaterPoint3",
+                            Title = "Blue Spring",
                             UserId = 3,
                             VerificationDocumentId = 3,
-                            WaterPointType = 1
+                            WaterPointType = 1,
+                            photoUrl = "water_delivery2.jpg"
                         },
                         new
                         {
                             Id = 4,
-                            Address = "WaterPoint_address4",
-                            Description = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temDuisfugiat nulla pariaecat cupidata deserunt mollit anim id est laborum",
+                            Address = "20, Shevchenka Blvd, Kyiv",
+                            Description = "pump station provides free drinking water to the public. The water is regularly tested and meets all safety standards.",
                             HasOrdering = true,
                             HasOwnDelivery = true,
                             HasSearchPriority = false,
                             IsVerified = true,
                             PhoneNumber = "(068)-123-58-77",
-                            Rating = 4.0,
-                            Title = "WaterPoint4",
+                            Rating = 0.0,
+                            Title = "Pump station #286",
                             UserId = 2,
                             VerificationDocumentId = 4,
-                            WaterPointType = 0
+                            WaterPointType = 0,
+                            photoUrl = "pump_station2.jpg"
                         },
                         new
                         {
                             Id = 5,
-                            Address = "WaterPoint_address5",
-                            Description = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temDuisfugiat nulla pariaecat cupidata deserunt mollit anim id est laborum",
+                            Address = "30, Velyka Vasylkivska St, Kyiv",
+                            Description = "supermarket specializes in selling various types of water, from purified drinking water to mineral water, flavored water, and even water in glass bottles.",
                             HasOrdering = true,
                             HasOwnDelivery = true,
                             HasSearchPriority = false,
                             IsVerified = true,
                             PhoneNumber = "(068)-776-58-77",
-                            Rating = 5.0,
-                            Title = "WaterPoint5",
+                            Rating = 0.0,
+                            Title = "Aqua Market",
                             UserId = 2,
                             VerificationDocumentId = 5,
-                            WaterPointType = 2
+                            WaterPointType = 2,
+                            photoUrl = "water_shop1.jpg"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Address = "20, Tarasa Shevchenka Blvd, Kyiv",
+                            Description = "private water point sells alkaline water that is believed to have health benefits",
+                            HasOrdering = true,
+                            HasOwnDelivery = true,
+                            HasSearchPriority = false,
+                            IsVerified = false,
+                            PhoneNumber = "(068)-776-58-77",
+                            Rating = 0.0,
+                            Title = "Aqua Vita",
+                            UserId = 6,
+                            VerificationDocumentId = 6,
+                            WaterPointType = 1,
+                            photoUrl = "water_delivery3.jpg"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Address = "25, Khreschatyk St, Kyiv",
+                            Description = "private water point sells deep ocean water, harvested from the depths of the Black Sea, that is known for its high mineral content and unique taste",
+                            HasOrdering = true,
+                            HasOwnDelivery = true,
+                            HasSearchPriority = false,
+                            IsVerified = false,
+                            PhoneNumber = "(068)-776-58-77",
+                            Rating = 0.0,
+                            Title = "Deep Blue",
+                            UserId = 6,
+                            VerificationDocumentId = 7,
+                            WaterPointType = 1,
+                            photoUrl = "water_delivery4.PNG"
                         });
                 });
 

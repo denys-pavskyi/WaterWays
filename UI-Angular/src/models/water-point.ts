@@ -15,6 +15,7 @@ export class WaterPoint{
     hasSearchPriority: boolean;
     userId: number;
     verificationDocumentId!: number;
+    photoUrl: string;
 
     reviewIds: Array<number>;
     productIds: Array<number>;
@@ -23,7 +24,7 @@ export class WaterPoint{
     phoneNumber: string, address: string, rating: number, isVerified: boolean, 
     hasOrdering: boolean, hasOwnDelivery: boolean, hasSearchPriority: boolean, 
     userId: number, verificationDocumentId: number, 
-    reviewIds: Array<number>, productIds: Array<number>){
+    reviewIds: Array<number>, productIds: Array<number>, photoUrl: string){
         this.title = title;
         this.description = description;
         this.waterPointType = waterPointType;
@@ -37,6 +38,8 @@ export class WaterPoint{
         this.hasSearchPriority = hasSearchPriority;
         this.reviewIds = reviewIds;
         this.productIds = productIds;
+        this.photoUrl = photoUrl;
+        this.verificationDocumentId = verificationDocumentId;
     }
 }
 

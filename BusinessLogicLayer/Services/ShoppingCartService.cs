@@ -65,5 +65,21 @@ namespace BusinessLogicLayer.Services
             IEnumerable<ShoppingCart> unmappedShoppingCarts = await _unitOfWork.ShoppingCartRepository.GetAllWithDetailsAsync();
             return _mapper.Map<IEnumerable<ShoppingCartModel>>(unmappedShoppingCarts.Where(x => x.UserId == userId));
         }
+
+        public async Task<int> FindByProductAndUserId(int productId, int userId)
+        {
+            IEnumerable<ShoppingCart> unmappedShoppingCarts = await _unitOfWork.ShoppingCartRepository.GetAllWithNoTrackingAsync();
+
+            ShoppingCart unmappedShoppingCart = unmappedShoppingCarts.Where(x => x.UserId==userId && x.ProductId==productId).FirstOrDefault();
+
+            if(unmappedShoppingCart!=null)
+            {
+                return unmappedShoppingCart.Id;
+            }
+            else
+            {
+                return -1;
+            }
+        }
     }
 }

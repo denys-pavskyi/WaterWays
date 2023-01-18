@@ -23,6 +23,8 @@ namespace BusinessLogicLayer.Models
 
         public string Address { get; set; }
 
+        public string photoUrl { get; set; }
+
         public double Rating { get; set; }
 
         public bool IsVerified { get; set; }

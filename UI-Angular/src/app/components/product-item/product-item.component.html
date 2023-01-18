@@ -1,19 +1,32 @@
 <div class="product w-100 row">
-    <div class="d-flex col-5 productInfo">
-        <b>Title:</b> <u>{{product.title}}</u><br>
+    <div class="d-flex col-8 productInfo">
+        
+        <div class="photoTitleDiv">
+            <span>
+                <b>Title:</b><br><u>{{product.title}}</u>
+            </span>
+            <div class="photoDiv">
+                <img class="photoPreview" [src]="'/assets/images/'+getPhotoUrl()">
+            </div>
+            
+           
+        </div>
+
         <b>Type:</b> {{enumToString(product.type)}}<br>
         <b>Description:</b> {{product.description}}<br>
         <b>Price per unit:</b> {{product.price}}<br>
-        <b>Quantity available:</b> {{product.quantityAvailable}}<br>
     </div>
-    <div class="d-flex col-7 buttonsDiv">
-        <input id="numberOfUnits" class="customInput" type="number" min="1" [max]="product.quantityAvailable">
-        <button class="btn btn-success custButton" (click)="addToCart()">
-            <b>+</b>
-        </button>
-        <button class="btn btn-danger custButton" (click)="deleteFromCart()">
-            <b>x</b>
-        </button>
+    <div class="col-4 buttonsDiv">
+        <form [formGroup]="form">
+            <span>
+                <input [(ngModel)]="quantity" id="numberOfUnits" class="customInput" type="number" min="1" [max]="product.quantityAvailable">
+                ({{product.quantityAvailable}})<br>
+            </span>
+            <button class="btn btn-success custButton" (click)="addToCart()">
+                <b>Submit</b>
+            </button>
+        </form>
+        
         <div class="infoAboutAddedProduct" *ngIf="isAdded">
             Added<br>
             {{quantity}}<br>

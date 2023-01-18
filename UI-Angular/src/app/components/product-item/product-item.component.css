@@ -2,6 +2,9 @@
     border: 1px solid black;
     border-radius: 5px;
     background-color: lightgray;
+    width: 100px;
+    display: flex;
+    justify-content: center;
 }
 
 .productInfo{
@@ -9,22 +12,49 @@
 }
 
 .custButton{
-    width: 35px;
+    width: 80px;
     height: 35px;
     font-size: 16px;
 }
 
-.buttonsDiv{
-    flex-direction: row;
+.buttonsDiv, .buttonsDiv>form{
+    display: flex;
+    flex-direction: column;
     gap:20px;
-    align-items: center;
+    justify-content: center;
 }
 
 .customInput{
     height: 30px;
-    width: 50px;
+    width: 70px;
 }
 
 .infoAboutAddedProduct{
     color:lime;
+}
+
+.photoPreview{
+    max-width: 120px;
+    max-height: 120px;;
+}
+
+.photoTitleDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    gap:50px;
+    padding: 5px 0px 5px 10px;
+}
+
+.photoDiv{
+    background-color: white;
+    width: 130px;
+    height: 130px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    border-radius: 2px;
 }
