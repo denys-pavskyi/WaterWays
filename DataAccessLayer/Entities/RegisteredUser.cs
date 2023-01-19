@@ -27,7 +27,7 @@ namespace DataAccessLayer.Entities
         [Required, EmailAddress]
         public string Email { get; set; }
 
-        [Required, StringLength(20)]
+        [Required, StringLength(30)]
         public string Phone { get; set; }
 
         [Required, StringLength(80)]

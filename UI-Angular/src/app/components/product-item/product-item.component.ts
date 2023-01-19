@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { AccountService } from 'src/app/services/account.service';
 import { OrderService } from 'src/app/services/order.service';
+import { quantityValidator } from 'src/app/shared/quantityValidators';
 import { Product, ProductType } from 'src/models/product';
 import { RegisteredUser } from 'src/models/registered-user';
 import { ShoppingCart } from 'src/models/shoppingCart';
@@ -21,6 +22,7 @@ export class ProductItemComponent implements OnInit {
 
   constructor(public orderService: OrderService, private errorService: OrderService){
     this.form = new FormGroup({
+      //'quantity': new FormControl('', [Validators.required, quantityValidator(this.quantityAvailable)])
       'quantity': new FormControl('', [Validators.required])
     })
   }

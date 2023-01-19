@@ -25,11 +25,11 @@ export class OrderService {
   }
 
   ShoppingCartToOrderDetails(userId: number, orderId: number){
-    return this.http.get<number>(`${this.shoppingCartURL}/toOrderDetails/${userId}/${orderId}`);
+    return this.http.post(`${this.shoppingCartURL}/${userId}/submit-and-clear-cart/${orderId}`,{});
   }
 
-  AddOrder(order: Order):Observable<Order>{
-    return this.http.post<Order>(`${this.orderURL}`, order).pipe(
+  AddOrder(order: Order):Observable<number>{
+    return this.http.post<number>(`${this.orderURL}`, order).pipe(
       catchError(this.errorHandler.bind(this))
     );
   }

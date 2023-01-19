@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Observable, tap } from 'rxjs';
+import { concatMap, Observable, tap } from 'rxjs';
 import { OrderService } from 'src/app/services/order.service';
 import { Order, OrderStatus } from 'src/models/order';
 import { ShoppingCart } from 'src/models/shoppingCart';
@@ -35,18 +35,17 @@ export class OrderConfirmingComponent implements OnInit {
     const phone = this.form.get('phone')?.value;
     const address = this.form.get('address')?.value;
 
-    let order = new Order(orderText, userid, orderDate, phone, address, this.totalPrice, true, OrderStatus.InProgress);
+    let order = new Order(orderText, userid, orderDate, phone, address, this.totalPrice, true, OrderStatus.InProgress, []);
 
-    this.orderService.AddOrder(order).subscribe(
-      order => this.orderId = order.id
-    )
 
-    this.orderService.ShoppingCartToOrderDetails(Number(window.localStorage.getItem('ID')), this.orderId).subscribe({
-      next: (data => {
-        console.log(data);
-        this.router.navigate(['/home'])
-      })
-    });
+    
+
+    this.orderService.AddOrder(order).pipe(
+      concatMap(orderId => this.orderService.ShoppingCartToOrderDetails(Number(window.localStorage.getItem('ID')), orderId))
+    ).subscribe();
+    this.router.navigate(['/my-orders']);
+      
+  
   }
 
 

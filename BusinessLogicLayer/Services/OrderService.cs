@@ -34,6 +34,16 @@ namespace BusinessLogicLayer.Services
             await _unitOfWork.SaveAsync();
         }
 
+        public async Task<int> AddAsyncReturnId(OrderModel model)
+        {
+            ModelsValidation.OrderModelValidation(model);
+            var mappedOrder = _mapper.Map<Order>(model);
+
+            await _unitOfWork.OrderRepository.AddAsync(mappedOrder);
+            await _unitOfWork.SaveAsync();
+            return mappedOrder.Id;
+        }
+
         public async Task DeleteAsync(int modelId)
         {
             await _unitOfWork.OrderRepository.DeleteByIdAsync(modelId);

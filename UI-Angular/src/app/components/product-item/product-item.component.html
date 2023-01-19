@@ -21,6 +21,8 @@
             <span>
                 <input formControlName="quantity" id="numberOfUnits" class="customInput" type="number" min="1" [max]="product.quantityAvailable">
                 ({{product.quantityAvailable}})<br>
+                <div class="validationFailed" *ngIf="form.controls['quantity'].invalid"> Quantity is not valid or max quantity surpassed</div>
+            
             </span>
             <button class="btn btn-success custButton" (click)="addToCart()">
                 <b>Submit</b>

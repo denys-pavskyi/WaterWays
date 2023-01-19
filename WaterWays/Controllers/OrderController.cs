@@ -76,20 +76,21 @@ namespace WaterWays.Controllers
         [HttpPost("order")]
         public async Task<ActionResult> Post([FromBody] OrderModel Order)
         {
+            int newId = 0;
             if (Order == null)
             {
                 return BadRequest();
             }
             try
             {
-                await _service.AddAsync(Order);
+                newId = await _service.AddAsyncReturnId(Order);
             }
             catch
             {
                 return BadRequest();
             }
 
-            return Ok(Order);
+            return Ok(newId);
 
         }
 

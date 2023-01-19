@@ -16,7 +16,7 @@ namespace DataAccessLayer.Entities
         [Required, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int UserId { get; set; }
 
-        [Required, StringLength(15)]
+        [Required, StringLength(30)]
         public string ContactPhone { get; set; }
 
         [Required]

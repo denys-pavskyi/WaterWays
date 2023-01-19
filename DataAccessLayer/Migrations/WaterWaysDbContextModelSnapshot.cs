@@ -37,8 +37,8 @@ namespace DataAccessLayer.Migrations
 
                     b.Property<string>("ContactPhone")
                         .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<bool>("IsToBeDelivered")
                         .HasColumnType("bit");
@@ -298,8 +298,8 @@ namespace DataAccessLayer.Migrations
 
                     b.Property<string>("Phone")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<int>("Role")
                         .HasColumnType("int");
@@ -697,7 +697,7 @@ namespace DataAccessLayer.Migrations
                             UserId = 3,
                             VerificationDocumentId = 2,
                             WaterPointType = 0,
-                            photoUrl = "pump_station2.jpg"
+                            photoUrl = "pump_station1.jpg"
                         },
                         new
                         {
@@ -721,7 +721,7 @@ namespace DataAccessLayer.Migrations
                             Id = 4,
                             Address = "20, Shevchenka Blvd, Kyiv",
                             Description = "pump station provides free drinking water to the public. The water is regularly tested and meets all safety standards.",
-                            HasOrdering = true,
+                            HasOrdering = false,
                             HasOwnDelivery = true,
                             HasSearchPriority = false,
                             IsVerified = true,

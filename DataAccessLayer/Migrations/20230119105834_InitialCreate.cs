@@ -21,7 +21,7 @@ namespace DataAccessLayer.Migrations
                     Password = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     Role = table.Column<int>(type: "int", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Phone = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Phone = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     Address = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false)
                 },
                 constraints: table =>
@@ -37,7 +37,7 @@ namespace DataAccessLayer.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     OrderText = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false),
-                    ContactPhone = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                    ContactPhone = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
@@ -264,9 +264,9 @@ namespace DataAccessLayer.Migrations
                 values: new object[,]
                 {
                     { 1, "10, Kreshchatyk St, Kyiv", "private water point offers high-quality purified drinking water for purchase", true, true, false, true, "(068)-555-55-55", 3.0, "Aqua Pure", 2, 1, 1, "water_delivery1.png" },
-                    { 2, "2, Hrushevskoho St, Kyiv", "pump station offers a free water dispenser for the public to use. It is a community-funded initiative to provide clean and safe drinking water for all", false, false, false, true, "(068)-555-66-77", 4.0, "Pump station №452", 3, 2, 0, "pump_station2.jpg" },
+                    { 2, "2, Hrushevskoho St, Kyiv", "pump station offers a free water dispenser for the public to use. It is a community-funded initiative to provide clean and safe drinking water for all", false, false, false, true, "(068)-555-66-77", 4.0, "Pump station №452", 3, 2, 0, "pump_station1.jpg" },
                     { 3, "5, Volodymyrska St, Kyiv", "private water point sells natural spring water sourced from a nearby mountain", true, true, false, true, "(068)-123-33-33", 3.5, "Blue Spring", 3, 3, 1, "water_delivery2.jpg" },
-                    { 4, "20, Shevchenka Blvd, Kyiv", "pump station provides free drinking water to the public. The water is regularly tested and meets all safety standards.", true, true, false, true, "(068)-123-58-77", 0.0, "Pump station #286", 2, 4, 0, "pump_station2.jpg" },
+                    { 4, "20, Shevchenka Blvd, Kyiv", "pump station provides free drinking water to the public. The water is regularly tested and meets all safety standards.", false, true, false, true, "(068)-123-58-77", 0.0, "Pump station #286", 2, 4, 0, "pump_station2.jpg" },
                     { 5, "30, Velyka Vasylkivska St, Kyiv", "supermarket specializes in selling various types of water, from purified drinking water to mineral water, flavored water, and even water in glass bottles.", true, true, false, true, "(068)-776-58-77", 0.0, "Aqua Market", 2, 5, 2, "water_shop1.jpg" },
                     { 6, "20, Tarasa Shevchenka Blvd, Kyiv", "private water point sells alkaline water that is believed to have health benefits", true, true, false, false, "(068)-776-58-77", 0.0, "Aqua Vita", 6, 6, 1, "water_delivery3.jpg" },
                     { 7, "25, Khreschatyk St, Kyiv", "private water point sells deep ocean water, harvested from the depths of the Black Sea, that is known for its high mineral content and unique taste", true, true, false, false, "(068)-776-58-77", 0.0, "Deep Blue", 6, 7, 1, "water_delivery4.PNG" }

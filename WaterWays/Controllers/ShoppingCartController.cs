@@ -67,8 +67,8 @@ namespace WaterWays.Controllers
         }
 
 
-        [HttpPut]
-        [Route("shoppingCart/toOrderDetails/{userId}/{orderId}")]
+        [HttpPost]
+        [Route("shoppingCart/{userId}/submit-and-clear-cart/{orderId}")]
         public async Task<ActionResult> ShoppingCartToOrderDetails(int userId, int orderId)
         {
 

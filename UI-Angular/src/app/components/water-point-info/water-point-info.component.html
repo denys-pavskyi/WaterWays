@@ -19,11 +19,16 @@
         <div class="col">
             <b>Reviews:</b><br>
             <div class="d-flex itemsDiv" *ngIf="reviews$ | async as reviews">
-            <div *ngFor="let review of reviews">
-                <app-review-item [review]="review"></app-review-item>
-            </div>
+                <div *ngFor="let review of reviews">
+                    <app-review-item [review]="review"></app-review-item>
+                </div>
 
             </div>
+
+            <!-- <form>
+                <label><b>Leave new review</b></label>
+                <input type="text" class="newReview">
+            </form> -->
         </div>
     </div>
 

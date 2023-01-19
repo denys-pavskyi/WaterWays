@@ -95,18 +95,39 @@ namespace BusinessLogicLayer.Services
 
         public async Task<bool> ShoppingCartToOrderDetails(int userId, int orderId){
             List<ShoppingCart> unmappedShoppingCarts = await _unitOfWork.ShoppingCartRepository.GetAllWithNoTrackingAsync() as List<ShoppingCart>;
+
+            List<Product> products = (await _unitOfWork.ProductRepository.GetAllWithNoTrackingAsync()).ToList();
+            
             unmappedShoppingCarts = unmappedShoppingCarts.Where(x => x.UserId == userId).ToList();
             for (int i = 0; i < unmappedShoppingCarts.Count(); i++)
             {
-                OrderDetail newOrderDetail = new OrderDetail() {
-                    OrderId = orderId,
-                    ProductId = unmappedShoppingCarts[i].ProductId,
-                    Quantity = unmappedShoppingCarts[i].Quantity,
-                    TotalPrice = unmappedShoppingCarts[i].TotalPrice,
-                    UnitPrice = unmappedShoppingCarts[i].UnitPrice     
-                };
-                await _unitOfWork.OrderDetailRepository.AddAsync(newOrderDetail);
-                await _unitOfWork.ShoppingCartRepository.DeleteByIdAsync(unmappedShoppingCarts[i].Id);
+                Product prod = products.FirstOrDefault(x => x.Id == unmappedShoppingCarts[i].ProductId);
+
+                decimal newQuantity = prod.QuantityAvailable - unmappedShoppingCarts[i].Quantity;
+                if(newQuantity >= 0)
+                {
+
+                    prod.QuantityAvailable = newQuantity;
+
+                    _unitOfWork.ProductRepository.Update(prod);
+
+                    OrderDetail newOrderDetail = new OrderDetail()
+                    {
+                        OrderId = orderId,
+                        ProductId = unmappedShoppingCarts[i].ProductId,
+                        Quantity = unmappedShoppingCarts[i].Quantity,
+                        TotalPrice = unmappedShoppingCarts[i].TotalPrice,
+                        UnitPrice = unmappedShoppingCarts[i].UnitPrice
+                    };
+                    await _unitOfWork.OrderDetailRepository.AddAsync(newOrderDetail);
+                    await _unitOfWork.ShoppingCartRepository.DeleteByIdAsync(unmappedShoppingCarts[i].Id);
+                }
+
+                
+
+
+
+                
             }
             await _unitOfWork.SaveAsync();
 
